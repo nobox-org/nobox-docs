@@ -3,7 +3,7 @@ title: Install Nobox
 description: How to get started with Nobox
 ---
 
-# {% $markdoc.frontmatter.title %}
+# Install Nobox
 
 Follow the instructions below to install Nobox in your app.
 
