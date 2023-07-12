@@ -142,7 +142,7 @@ export function ThemeToggle() {
         }}
       >
         {isDark ? moon : sun}
-        <span>{isDark ? 'Dark mode' : 'Light mode'}</span>
+        {/* <span>{isDark ? 'Dark mode' : 'Light mode'}</span> */}
       </button>
       <style jsx>
         {`
@@ -151,7 +151,6 @@ export function ThemeToggle() {
             gap: 8px;
             align-items: center;
             justify-content: center;
-            width: 120px;
             font-size: 15px;
             line-height: 27px;
             font-weight: 400;

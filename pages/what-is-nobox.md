@@ -7,14 +7,6 @@ description: Explains what Nobox is all about
 
 Nobox is a powerful backend as a service (BaaS) product that simplifies the development process for client-facing applications. With Nobox, developers can leverage backend-related services such as authentication, authorization, and CRUD (Create, Read, Update, Delete) operations on records without the need to set up and maintain a complex backend infrastructure.
 
-## Key Features
-
-- **Authentication and Authorization**: Nobox provides a secure authentication system that allows generate token 
-
-- **Data Management**: Nobox enables developers to perform CRUD operations on data records effortlessly. Whether it's creating, reading, updating, or deleting records, Nobox provides a simple and intuitive API to interact with your data.
-
-- **Search and Filtering**: With built-in search functionality, Nobox allows you to perform efficient searches and apply advanced filtering criteria to retrieve specific data subsets.
-
 ## Getting Started
 
 To start using Nobox, you can install the Nobox npm client library available on GitHub: [Nobox Npm Client](https://github.com/nobox-org/nobox-js-client). The npm client provides all the necessary functionalities and APIs to integrate Nobox into your JavaScript codebase.

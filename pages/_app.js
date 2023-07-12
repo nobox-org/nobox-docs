@@ -2,7 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 
 import { AppLink as Link } from '../components/AppLink';
-import { Footer, SideNav, TableOfContents, TopNav } from '../components/Shell';
+import { Footer, SideNav, TableOfContents, TopNav, ThemeToggle } from '../components/Shell';
+
 
 import '@docsearch/css';
 import 'prismjs';
@@ -85,7 +86,7 @@ export default function MyApp(props) {
   React.useEffect(() => console.log(MARKDOC), []);
 
   return (
-    <div className={`${isLandingPage ? 'page--landing' : ''}`}>
+    <div>
       <Head>
         <title>{`${TITLE} | ${title}`}</title>
         <link rel="shortcut icon" href="/favicon.ico" />
@@ -141,6 +142,7 @@ export default function MyApp(props) {
       <TopNav>
         <Link href="/docs/getting-started">Docs</Link>
         <Link href="https://github.com/nobox-org/nobox-js-client">GitHub</Link>
+        <ThemeToggle />
       </TopNav>
       <div className="page">
         <SideNav />

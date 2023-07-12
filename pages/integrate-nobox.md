@@ -12,9 +12,9 @@ Depending on how you learn, you can decide to clone or study this [nobox example
 
 
 ## Integrate Nobox into your project
-follow the steps below to integrate your project
+Follow the steps below to integrate Nobox into your project:
 1. Create a folder and name it `nobox`
-2. Create a `config.ts` file in the `nobox` folder you created and add the codes below
+2. Create a `config.ts` file in the `nobox` folder you created and add the following code:
     ```ts
     import  {  Config,  getFunctions,  getSchemaCreator  }  from  "nobox-client";
 
@@ -33,9 +33,10 @@ follow the steps below to integrate your project
     - Replace `[yourProject]` with your desired project name
     - Replace `[yourtoken]` with the token you copied on nobox.cloud website
 
-3. Create a folder called `record-structures` (could be any other name) inside the `nobox` folder too
-4. Create a file inside the `record-structures` folder and call it `user.ts`, this is just an example
-5. Copy the code below inside the `user.ts` file.  You can restructure it as you see fit
+3. Create a folder called record-structures (or any other name) inside the nobox folder
+4. Create a file inside the record-structures folder and name it user.ts (or any other name). This is just an example.
+5. Copy the following code into the user.ts file. You can modify the structure as needed:
+
     ```ts
     import { Space } from "nobox-client";
     import { createSchema } from "../config";
@@ -78,7 +79,7 @@ follow the steps below to integrate your project
     export const UserModel = createRowSchema<User>(UserStructure);
     ```
 
- 6. After following the steps above , your project folder structure should look like this below:
+ 6. After following these steps, your project folder structure should resemble the following:
     ```md
     .
     ├── next-env.d.ts

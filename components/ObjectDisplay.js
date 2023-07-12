@@ -152,6 +152,7 @@ export function ObjectDisplay({
       return (
         <ObjectDisplay
           data={value}
+          key={key}
           rootKey={key}
           hasTrailingComma={true}
           minCollapseSize={minCollapseSize}

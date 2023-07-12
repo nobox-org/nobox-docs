@@ -1,6 +1,18 @@
 {
-  "extends": ["eslint:recommended", "next"],
+  "extends": [
+    "eslint:recommended",
+    "next"
+  ],
   "rules": {
-    "import/no-anonymous-default-export": "off"
+    "import/no-anonymous-default-export": "off",
+    "react/no-unknown-property": [
+      2,
+      {
+        "ignore": [
+          "jsx",
+          "global"
+        ]
+      }
+    ]
   }
 }
