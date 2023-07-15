@@ -22,16 +22,16 @@ import 'codemirror/lib/codemirror.css';
 
 import '../public/globals.css';
 
-const TITLE = 'Markdoc';
-const DESCRIPTION = 'A powerful, flexible, Markdown-based authoring framework';
-const MARKDOC = `
+const TITLE = 'Nobox';
+const DESCRIPTION = 'A powerful, reliable backend as a service';
+const NOBOX = `
 
 
-  ███    ███  █████  ██████  ██   ██ ██████   ██████   ██████
-  ████  ████ ██   ██ ██   ██ ██  ██  ██   ██ ██    ██ ██
-  ██ ████ ██ ███████ ██████  █████   ██   ██ ██    ██ ██
-  ██  ██  ██ ██   ██ ██   ██ ██  ██  ██   ██ ██    ██ ██
-  ██      ██ ██   ██ ██   ██ ██   ██ ██████   ██████   ██████
+  ███    ██  ██████  ██████   ██████  ██   ██ 
+  ████   ██ ██    ██ ██   ██ ██    ██  ██ ██  
+  ██ ██  ██ ██    ██ ██████  ██    ██   ███   
+  ██  ██ ██ ██    ██ ██   ██ ██    ██  ██ ██  
+  ██   ████  ██████  ██████   ██████  ██   ██ 
 
 
 
@@ -83,7 +83,7 @@ export default function MyApp(props) {
 
   const isLandingPage = props.router.pathname === '/';
 
-  React.useEffect(() => console.log(MARKDOC), []);
+  React.useEffect(() => console.log(NOBOX), []);
 
   return (
     <div>
@@ -122,25 +122,23 @@ export default function MyApp(props) {
         <meta name="title" content={title} />
         <meta name="description" content={description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://markdoc.dev" />
+        <meta property="og:url" content="https://docs.nobox.cloud" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta
           property="og:image"
-          content="https://markdoc.dev/images/share.png"
+          content="https://docs.nobox.cloud/images/share.png"
         />
         <meta name="twitter:card" content="summary" />
         <meta
           name="twitter:image"
-          content="https://markdoc.dev/images/share.png"
+          content="https://docs.nobox.cloud/images/share.png"
         />
       </Head>
-      {/* https://webaim.org/techniques/skipnav/ */}
       <a href="#skip-nav" className="skip-nav">
         Skip to content
       </a>
       <TopNav>
-        <Link href="/docs/getting-started">Docs</Link>
         <Link href="https://github.com/nobox-org/nobox-js-client">GitHub</Link>
         <ThemeToggle />
       </TopNav>

@@ -4,19 +4,33 @@ import React from 'react';
 export const NoboxLogo = () => {
     const [theme, setTheme] = React.useState(undefined);
 
+    const handleSystemModeChange = (event) => {
+        if (event.matches) {
+            setTheme("dark");
+        } else {
+            setTheme("light")
+        }
+    };
+
+    const handleCustomModeChange = (event) => {
+        if (event?.detail?.key === 'theme') {
+            const newValue = event.detail.newValue;
+            setTheme(newValue)
+        }
+    };
+
     React.useEffect(() => {
 
-        const theme = localStorage.getItem('theme')
-        setTheme(theme);
+        const userCustomMode = localStorage.getItem('theme');
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const systemMode = mediaQuery.matches ? "dark" : 'light';
+        const initialMode = userCustomMode || systemMode;
 
-        const handleStorageChange = (event) => {
-            if (event.detail.key === 'theme') {
-                const newValue = event.detail.newValue;
-                setTheme(newValue)
-            }
-        };
+        setTheme(initialMode);
 
-        window.addEventListener('myStorageChange', handleStorageChange);
+
+        mediaQuery.addEventListener('change', handleSystemModeChange);
+        window.addEventListener('myStorageChange', handleCustomModeChange);
 
         return () => {
             window.removeEventListener('myStorageChange', handleStorageChange);
