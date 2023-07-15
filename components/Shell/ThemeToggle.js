@@ -134,7 +134,6 @@ export function ThemeToggle() {
       onBlur={() => setHovering(false)}
     >
       <button
-        className={isDark ? 'dark' : 'light'}
         onClick={() => {
           // Don't transition body styles on initial load, when toggled
           document.body.style.transition = BODY_TRANSITION;
