@@ -33,7 +33,7 @@ export const NoboxLogo = () => {
         window.addEventListener('myStorageChange', handleCustomModeChange);
 
         return () => {
-            window.removeEventListener('myStorageChange', handleStorageChange);
+            window.removeEventListener('myStorageChange', handleCustomModeChange);
         };
     }, []);
 
