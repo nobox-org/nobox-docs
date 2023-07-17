@@ -24,7 +24,7 @@ Since you have created the needed structure in the installation and integration 
 
 ### Example 2: Insert Data in React
 
-In the case of react , this code will look like this below. Check out on how `UserModel` was used.
+When using React, the code will resemble the example below. Pay attention to how the UserModel is utilized in the code snippet.
 
 ```ts
 import React, { useState } from 'react';
@@ -127,4 +127,4 @@ console.log(allData);
 ```
 ## Next steps
 
-- [Nobox Usage](/use-nobox)
+- [Schema Overview](//schema/overview)

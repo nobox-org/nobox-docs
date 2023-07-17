@@ -4,17 +4,20 @@ description: How to integrate nobox into your project
 ---
 
 # {% $markdoc.frontmatter.title %}
-
+{% callout type="warning" %}
 Follow the [Installation process](/install-box) before following the integration steps below.
 
-## Use Nobox Example Project
-Depending on how you learn, you can decide to clone or study this [nobox example project](https://github.com/nobox-org/nobox-react-example) and use that to learn how to integrate nobox, else you can follow the steps below
+{% /callout %}
+
+{% callout type="note" %}
+Depending on how you learn, you can decide to clone or study this [nobox example project](https://github.com/nobox-org/nobox-react-example) and use that to integrate nobox, else you can follow the steps below
+
+{% /callout %}
 
 
-## Integrate Nobox into your project
-Follow the steps below to integrate Nobox into your project:
-1. Create a folder and name it `nobox`
-2. Create a `config.ts` file in the `nobox` folder you created and add the following code:
+1. Go to [nobox.cloud](https://nobox.cloud), register and copy the token provided
+2. Create a folder and name it `nobox`
+3. Create a `config.ts` file in the `nobox` folder you created and add the following code:
     ```ts
     import  {  Config,  getFunctions,  getSchemaCreator  }  from  "nobox-client";
 
@@ -33,9 +36,9 @@ Follow the steps below to integrate Nobox into your project:
     - Replace `[yourProject]` with your desired project name
     - Replace `[yourtoken]` with the token you copied on nobox.cloud website
 
-3. Create a folder called record-structures (or any other name) inside the nobox folder
-4. Create a file inside the record-structures folder and name it user.ts (or any other name). This is just an example.
-5. Copy the following code into the user.ts file. You can modify the structure as needed:
+4. Create a folder called record-structures (or any other name) inside the nobox folder
+5. Create a file inside the record-structures folder and name it user.ts (or any other name). This is just an example.
+6. Copy the following code into the user.ts file. You can modify the structure as needed:
 
     ```ts
     import { Space } from "nobox-client";
@@ -79,7 +82,7 @@ Follow the steps below to integrate Nobox into your project:
     export const UserModel = createRowSchema<User>(UserStructure);
     ```
 
- 6. After following these steps, your project folder structure should resemble the following:
+ 6. After following these steps, your project folder structure should look like the tree representation below::
     ```md
     .
     ├── next-env.d.ts

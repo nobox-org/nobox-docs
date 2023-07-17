@@ -5,12 +5,13 @@ description: How to Set up Nobox Schema
 
 # {% $markdoc.frontmatter.title %}
 
-To use Nobox to perform CRUD operations on records, you will need to define the schema for each type of record. For instance, for you to create or delete Users in an application, you will need to define the schema for `Users`.
+To perform CRUD operations on records using Nobox, you will need to define the schema for each type of record. For instance, for you to create or delete Users in an application, you will need to define the schema for `Users`.
+
 ## Schema Types
 
 Nobox supports two types of schemas for structuring your data: 
    - Rowed Schema
-   - Key-Value Schema. 
+   - Key-Value Schema.
    
 Each schema type offers different ways to organize and represent your data. Let's explore these schema types in more detail:
 
