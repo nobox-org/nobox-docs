@@ -42,7 +42,7 @@ Depending on how you learn, you can decide to clone or study this [nobox example
 
     ```ts
     import { Space } from "nobox-client";
-    import { createSchema } from "../config";
+    import { createRowSchema } from "../config";
 
     interface User {
         email: string;
