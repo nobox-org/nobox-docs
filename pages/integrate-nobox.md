@@ -5,7 +5,7 @@ description: How to integrate nobox into your project
 
 # {% $markdoc.frontmatter.title %}
 {% callout type="warning" %}
-Follow the [Installation process](/install-box) before following the integration steps below.
+Follow the [Installation process](/install-nobox) before following the integration steps below.
 
 {% /callout %}
 
