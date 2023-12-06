@@ -15,7 +15,7 @@ Depending on how you learn, you can decide to clone or study this [nobox example
 {% /callout %}
 
 
-1. Go to [nobox.cloud](https://nobox.cloud), register and copy the token provided
+1. Go to [nobox.cloud](https://nobox.cloud) or your local installation of nobox console e.g http://localhost:3000, register and copy the token provided
 2. Create a folder and name it `nobox`
 3. Create a `config.ts` file in the `nobox` folder you created and add the following code:
     ```ts
