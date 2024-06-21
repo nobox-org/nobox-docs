@@ -40,9 +40,9 @@ function UserComponent() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevState) => ({
+    setFormData((prevState: any) => ({
       ...prevState,
-      [name]: value,
+      [name]: name === "age" ? Number(value) : value,
     }));
   };
 
