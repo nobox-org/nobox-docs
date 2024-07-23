@@ -72,7 +72,7 @@ Depending on how you learn, you can decide to clone or study this [nobox example
                 type: String,
             },
             age: {
-                description: "User's Street Number",
+                description: "User's Age",
                 required: false,
                 type: Number,
             }
