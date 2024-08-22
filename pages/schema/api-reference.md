@@ -11,6 +11,7 @@ Here are the available options you can include in your schema structure:
 - `space` (string): The name of the schema space. It represents the logical grouping or category of your data.
 - `description` (string): A description of the schema, providing additional information about its purpose or usage.
 - `structure` (object or Type Constructor): An object that defines the properties for your fields or a type constructor that determines the type of your field
+- `initialData`: This is a array of objects you can add to your schema to serve as the initial ( seed) data for that record space. On first call , your record space will have this initial data
 
 For Example:
 
@@ -20,8 +21,19 @@ For Example:
 const userSchema: Space<User> = {
   space: "User",
   description: "Schema for User records",
+  initialData: [
+    {
+      name: "akin",
+      age: 20,
+      email "akin@gmail.com"
+    },
+    {
+      name: "Dave",
+      age: 30,
+      email: "dave@yahoo.com"
+    }
+  ],
   structure: {
-    id: String,
     name: String,
     age: Number,
     email: {
