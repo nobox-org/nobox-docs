@@ -34,7 +34,14 @@ const email = 'user@example.com';
 const password = 'password123';
 
 // Call the login function
-const result = await Nobox.login({ email, password });
+const response = await Nobox.login({
+      body: {
+        email,
+        password
+      },
+      space: UserStructure,
+});
+
 
 if (result) {
   // Authentication successful
