@@ -88,3 +88,4 @@ You can clone or study our [nobox example project](https://github.com/nobox-org/
 
 ## Next steps
 - [Use Nobox](/nobox-examples)
+- [Search Methods](/methods/search)

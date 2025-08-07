@@ -1,0 +1,2959 @@
+# Nobox Documentation Full Content for LLMs - Minified
+# Last updated: 2025-08-07
+
+## Getting Started
+### Understanding Nobox - The Backend as a Service Solution
+URL: https://docs.nobox.cloud/
+DESCRIPTION: Learn about the features and benefits of Nobox, a powerful backend as a service product.
+
+# Understanding Nobox
+
+Nobox is a backend as a service (BaaS) solution that provides backend-related services for client-facing applications. It provides essential functionalities such as Authentication/Authorization and Create/Read/Update/Delete/Search Operations, eliminating the need for developers to set up their own backend infrastructure.
+
+For instance, imagine a React developer building an ecommerce platform. With Nobox, they can seamlessly manage products and customers without the hassle of creating a backend from scratch. By utilizing our user-friendly Nobox Npm Client, developers can effortlessly add, delete, and search for products, manage a buyer dashboard, apply tags to products, and even generate personalized recommendations. Nobox also supports advanced features like population, allowing you to fetch related data from multiple record spaces in a single query, similar to SQL JOINs but with the flexibility of NoSQL.
+
+## Where Can I Use Nobox?
+
+Currently, Nobox can be used in any JavaScript codebase or platform through our NPM library. We are actively working on expanding our support by developing additional SDKs and client libraries for non-JavaScript platforms. We welcome your suggestions and ideas, and would definitely love to hear from you. Please feel free to reach out to us at `nobox.hq@gmail.com`.
+
+## Key Features
+
+### 🔗 Population Support
+Nobox supports population, allowing you to fetch related data from multiple record spaces in a single query. This is similar to SQL JOINs but with the flexibility of NoSQL.
+
+**Example:**
+```typescript
+const postsWithDetails = await PostModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      }
+    ]
+  }
+);
+```
+
+Learn more about [Population](/methods/populate) and [Population Guide](/schema/population-guide).
+
+## Next Steps
+
+- [Install Nobox](/install-nobox)
+
+### What is Nobox?
+URL: https://docs.nobox.cloud/what-is-nobox
+DESCRIPTION: Explains what Nobox is all about
+
+# What is Nobox?
+
+Nobox is a powerful backend as a service (BaaS) product that simplifies the development process for client-facing applications. With Nobox, developers can leverage backend-related services such as authentication, authorization, and CRUD (Create, Read, Update, Delete) operations on records without the need to set up and maintain a complex backend infrastructure.
+
+## Getting Started
+
+To start using Nobox, you can install the Nobox npm client library available on GitHub: [Nobox Npm Client](https://github.com/nobox-org/nobox-js-client). The npm client provides all the necessary functionalities and APIs to integrate Nobox into your JavaScript codebase.
+
+## Future Development
+
+We are continuously working to expand the capabilities of Nobox and make it available on various platforms. In the future, we plan to release additional SDKs and client libraries to enable the use of Nobox in non-JavaScript platforms. We welcome your suggestions and ideas for new clients and SDKs. Feel free to reach out to us at `nobox.hq@gmail.com` with your feedback.
+
+## Next Steps
+
+- [Install Nobox](/install-nobox) to start incorporating the power of Nobox into your applications.
+
+### Install Nobox
+URL: https://docs.nobox.cloud/install-nobox
+DESCRIPTION: How to get started with Nobox
+
+# Install Nobox
+Run `npm i nobox-client`
+
+## Next steps
+
+- [Integrate Nobox Into your Project](/integrate-nobox)
+
+### Integrate Nobox into your Javascript/Typescript project
+URL: https://docs.nobox.cloud/integrate-nobox
+DESCRIPTION: How to integrate nobox into your project
+
+# {% $markdoc.frontmatter.title %}
+{% callout type="note" %}
+You can clone or study our [nobox example project](https://github.com/nobox-org/nobox-react-example)
+{% /callout %}
+
+1. Install nobox client `npm i nobox-client` if you haven't
+1. Go to [nobox.cloud](https://nobox.cloud) or your local Nobox console, register and copy the token provided
+2. Create a folder and name it `nobox` or anything else
+3. Create a `config.ts` file in the `nobox` folder you created and add the following code:
+    ```ts
+    import  {  Config,  getFunctions,  getSchemaCreator  }  from  "nobox-client";
+
+    export const config: Config = {
+    endpoint:  "https://api.nobox.cloud", // or http://localhost:8000 if you are running local
+    project:  "[yourproject]", //Replace [yourProject] with your desired project name
+    token: "[yourToken]", //Replace [yourtoken] with the token you copied in step 2
+    };
+
+    export const createRowSchema = getSchemaCreator(config, { type: "rowed" });
+
+    export const createKeyGroupSchema = getSchemaCreator(config, { type: "key-group" });
+
+    export  const  Nobox  =  getFunctions(config);
+    ```
+
+4. Create a folder called `record-structures` (or any other name) inside the nobox folder
+5. Create a file inside the `record-structures` folder and name it `user.ts` (or any other name). This is just an example.
+6. Copy the following code into the `user.ts` file. You can modify the structure as needed:
+
+    ```ts
+    import { Space } from "nobox-client";
+    import { createRowSchema } from "../config";
+
+    interface User {
+        email: string;
+        password: string;
+        firstName: string;
+        age: number;
+    }
+
+    export const UserStructure: Space<User> = {
+        space: "User",
+        description: "A Record Space for Users",
+        structure: {
+            email: {
+                description: "User's Email",
+                type: String,
+                required: true
+            },
+            password: {
+                description: "User's Password",
+                required: true,
+                type: String,
+                hashed: true
+            },
+            firstName: {
+                description: "User's First Name",
+                required: true,
+                type: String,
+            },
+            age: {
+                description: "User's Age",
+                required: false,
+                type: Number,
+            }
+        }
+    }
+
+    export const UserModel = createRowSchema<User>(UserStructure);
+    ```
+
+ 6. After following these steps, your project folder structure should look like the tree representation below::
+    ```md
+    .
+    ├── nobox
+    │   ├── config.ts
+    │   └── record-structures
+    │       ├── app-details.ts
+    │       ├── cars.ts
+    │       └── user.ts
+    ├── package.json
+    ```
+
+## Next steps
+- [Use Nobox](/nobox-examples)
+- [Search Methods](/methods/search)
+
+## API Reference
+### Nobox API Reference
+URL: https://docs.nobox.cloud/api-reference
+DESCRIPTION: Complete API reference for Nobox backend as a service
+
+# Nobox API Reference
+
+Complete API reference for Nobox backend as a service.
+
+## Authentication
+
+```typescript
+import { NoboxClient } from "nobox-client";
+
+const client = new NoboxClient({
+  token: "your-api-token",
+  projectId: "your-project-id"
+});
+```
+
+## Schema Types
+
+### Rowed Schema
+```typescript
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  age: number;
+}
+```
+
+### Key-Value Schema
+```typescript
+interface Settings {
+  id: string;
+  values: Record<string, any>;
+}
+```
+
+## CRUD Operations
+
+### Create
+- `insert(data: T[])` - Insert multiple records
+- `insertOne(data: T)` - Insert single record
+
+### Read
+- `find(filter?, options?)` - Get multiple records
+- `findOne(filter?, options?)` - Get single record
+
+### Update
+- `updateOne(filter, data)` - Update single record
+- `updateOneById(id, data)` - Update by ID
+
+### Delete
+- `deleteOneById(id)` - Delete by ID
+
+## Search Operations
+
+```typescript
+const results = await UserModel.search({
+  searchableFields: ['name', 'email'],
+  searchText: 'john'
+});
+```
+
+## File Operations
+
+```typescript
+const upload = await UserModel.upload(file, {
+  folder: 'avatars',
+  maxSize: 5 * 1024 * 1024
+});
+```
+
+## Advanced Features
+
+### Population
+```typescript
+const postsWithAuthors = await PostModel.find({}, {
+  populate: [{
+    fields: {
+      from: "user",
+      localKey: "authorId", 
+      foreignKey: "id",
+      newField: "author"
+    },
+    space: "user"
+  }]
+});
+```
+
+### Key-Value Operations
+- `setKeys(keys)` - Set key-value pairs
+- `getKeys()` - Get all key-value pairs
+- `getTokenOwner()` - Get token owner info
+
+## Error Handling
+
+```typescript
+try {
+  const user = await UserModel.insertOne(data);
+} catch (error) {
+  console.error('Error:', error.message);
+}
+```
+
+## Next Steps
+
+- [Install Nobox](/install-nobox)
+- [Integration Guide](/integrate-nobox)
+- [Examples](/nobox-examples)
+
+## Methods
+### The Nobox Schema
+URL: https://docs.nobox.cloud/methods/overview
+DESCRIPTION: How to Set up Nobox Schema
+
+# {% $markdoc.frontmatter.title %}
+
+To use Nobox to perform CRUD operations on records, you will need to define the schema for each type of record. For instance, for you to create or delete Users in an application, you will need to define the schema for `Users`.
+## Schema Types
+
+Nobox supports two types of schemas for structuring your data: 
+   - Rowed Schema
+   - Key-Value Schema. 
+   
+Each schema type offers different ways to organize and represent your data. Let's explore these schema types in more detail:
+
+### Rowed Schema
+
+Rowed Schema represents structured data in a row-based format. It is similar to a traditional table structure in a relational database, where each row represents an individual record. Here's an example of defining a Rowed Schema using Nobox:
+
+> Note: Check [Nobox Integration Guide](/integrate-nobox) to see how the config file in the code was created
+
+```typescript
+import { Space } from "nobox-client";
+import { createRowedSchema } from "../config";
+
+interface User {
+  id: string;
+  name: string;
+  age: number;
+  email: string;
+}
+
+export const UserStructure: Space<User> = {
+  space: "User",
+  description: "A Rowed Schema for User records",
+  structure: {
+    id: {
+      description: "User ID",
+      type: String,
+      required: true,
+    },
+    name: {
+      description: "User's name",
+      type: String,
+      required: true,
+    },
+    age: {
+      description: "User's age",
+      type: Number,
+      required: true,
+    },
+    email: {
+      description: "User's email address",
+      type: String,
+      required: true,
+    },
+  },
+};
+
+export const UserModel = createRowedSchema<User>(UserStructure);
+```
+
+In this example, we define a User record with fields such as "id", "name", "age", and "email". Each field has a specified type and can be marked as required or optional based on your needs. Hold on! We still explain how to define the types and fields 
+
+### Key-Value Schema
+Key-Value Schema represents data as a collection of key-value pairs. It is similar to a dictionary or a JSON object structure, where the keys uniquely identify the values associated with them. Here's an example of defining a Key-Value Schema using Nobox:
+
+```typescript
+import { Space } from "nobox-client";
+import { createKeyValueSchema } from "../config";
+
+interface Settings {
+  id: string;
+  values: Record<string, any>;
+}
+
+export const SettingsStructure: Space<Settings> = {
+  space: "Settings",
+  description: "A Key-Value Schema for application settings",
+  structure: {
+    id: {
+      description: "Settings ID",
+      type: String,
+      required: true,
+    },
+    values: {
+      description: "Key-Value pairs representing settings",
+      type: Object,
+      required: true,
+    },
+  },
+};
+
+export const SettingsModel = createKeyValueSchema<Settings>(SettingsStructure);
+```
+
+In this example, we define a Settings record with a "values" field of type Object, which can hold various key-value pairs representing application settings.
+
+These schema types provide flexibility in representing structured data in Nobox. Choose the schema type that best fits your data model and use case to create powerful and scalable applications with ease.
+
+## Differences between Rowed and Key-value Schema
+|                   | Rowed Schema                                                                                                                                                                                                                                                                                                            | Key-Value Schema                                                                                                                                                                                                                                                           |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Definition        | Represents structured data in a row-based format, similar to a traditional table structure in a relational database.                                                                                                                                                                                                    | Represents data as a collection of key-value pairs, similar to a dictionary or JSON object structure.                                                                                                                                                                      |
+| Methods           | - `find`: Retrieves an array of records that match the specified parameters.                                                                                                                                                                             | - `setKeys`: Sets the key-value pairs for the specified space.                                                                                                                                                                                                               |
+|                   | - `findOne`: Retrieves a single record that matches the specified parameters.                                                                                                                                                                           | - `getKeys`: Retrieves the key-value pairs for the specified space.                                                                                                                                                                                                           |
+|                   | - `search`: Searches for records based on the provided search text in the specified searchable fields.                                                                                                                                                  |                                                                                                                                                                                                              |
+|                   | - `insert`: Inserts an array of records into the specified space.                                                                                                                                                                                     |                                                                                                                                                                                                              |
+| Data Structure    | Structured data organized in rows, where each row represents an individual record.                                                                                                                                                                                                                                     | Collection of key-value pairs where keys uniquely identify the associated values.                                                                                                                                                                                        |
+
+## Next steps
+
+- [Schema -  API Reference](/schema/api-reference)
+- [File Upload](/methods/upload) - Learn how to upload files using Nobox
+- [Search](/methods/search) - Learn how to search for records using text queries
+
+### Types of Nobox Methods
+URL: https://docs.nobox.cloud/methods/types
+DESCRIPTION: API Reference for Type of Nobox Methods
+
+# Types of Nobox Methods
+There are two types of methods in Nobox NPM Client. 
+
+{% side-by-side %}
+
+{% item %}
+
+## Rowed Models Methods
+  This is the kind of methods generated from models created with `{type: "rowed"}` config on `getSchemaCreator` like we have below:
+
+  ```ts
+  import { getSchemaCreator } from 'nobox-client';
+
+  const createRowedSchema = getSchemaCreator(config, {type: "rowed"})
+
+  const UserModel = createSchema(UserStructure);
+  ```
+
+  The `UserModel` in the above example will only have access to  Rowed Schema Methods because it was created with `getSchemaCreator` and a config of `{type: "rowed"}`
+
+  Note: When  second arugment (`{type: "rowed"}`) is not set, `getSchemaCreator` will still assume a default of `{type: rowed}`
+
+### Available Rowed Models Methods
+- find
+- findOne
+- search
+- insert
+- InsertOne
+- UpdateOne
+- UpdatedOneById
+- getTokenOwner
+
+**Note**: The `find` and `findOne` methods support population, allowing you to fetch related data from other record spaces in a single query. See [Population](/methods/populate) for detailed information.
+
+{% /item %}
+
+{% item %}
+
+## Key Group Models Methods
+  This is the kind of methods generated from models created with `{type: "key-group"}` config on `getSchemaCreator` like we have below:
+
+  ```ts
+  import { getSchemaCreator } from 'nobox-client';
+
+  const createRowedSchema = getSchemaCreator(config, {type: "key-group"})
+
+  const SettingsModel = createSchema(SettingsStructure);
+
+  ```
+  The `UserModel` in the above example will only have access to Key Group Methods because it was created with `getSchemaCreator` and a config of `{type: "key-group"}`
+
+### Available Key Group Schema Methods
+- setKeys
+- getKeys
+
+{% /item %}
+{% /side-by-side %}
+
+## Advanced Features
+
+### Population Support
+
+Rowed Schema methods (`find` and `findOne`) support population, which allows you to fetch related data from other record spaces in a single query. This is similar to SQL JOINs but with the flexibility of NoSQL.
+
+**Example:**
+```typescript
+const postsWithAuthors = await PostModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      }
+    ]
+  }
+);
+```
+
+For comprehensive information about population, see [Population](/methods/populate).
+
+### Model.find - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/find
+DESCRIPTION: Explanation of how Nobox Model Methods "Find" works
+
+# `model.find(query, options)`
+The `model.find()` method in Nobox allows you to retrieve documents from a model based on a specified query and customize the returned results using options.
+
+> **💡 Tip**: This method supports population to fetch related data from other record spaces. See the [Population Example](#example-with-population) below or visit [Population](/methods/populate) for detailed information.
+
+## Parameters 
+
+- `query`: An object that represents the search criteria. Each key in the object corresponds to a field in the model, and its value is used to match documents with matching field values. For example, `{ age: 10, gender: 'female' }` will return documents where the `age` field is 10 and the `gender` field is "female".
+
+- `options`: An object that provides additional configuration for the query results. It includes the following properties:
+
+  - `paramRelationship` (optional): Specifies the relationship between multiple search parameters. It can be set to `'Or'` or `'And'`. When set to `'Or'`, the query will return documents that match any of the provided search parameters. When set to `'And'`, the query will return documents that match all of the provided search parameters. If not specified, the default behavior is `'And'`.
+
+  - `pagination` (optional): An object that enables pagination of the query results. It includes the following properties:
+
+    - `limit` (required): The maximum number of records to be returned per page. For example, setting `limit` to 10 will return a maximum of 10 documents per page.
+
+    - `page` (optional): The page number to retrieve. If not specified, the default is the first page. For example, setting `page` to 2 will retrieve the second page of results based on the specified `limit`.
+
+  - `sort` (optional): An object that allows you to sort the query results based on a specific field. It includes the following properties:
+
+    - `by` (required): The field to use for sorting. It should be one of the keys of the `ReturnObject<T>` type. For example, setting `by` to `'createdAt'` will sort the documents based on their creation date.
+
+    - `order` (optional): The sort order for the results. It can be `'asc'` (ascending) or `'desc'` (descending). If not specified, the default is `'asc'`. For example, setting `order` to `'desc'` will sort the documents in descending order.
+
+  - `populate` (optional): An array of population configurations to fetch related data from other record spaces. See [Population](/methods/populate) for detailed information.
+
+With the `model.find()` method, you can efficiently retrieve documents that match specific criteria and control the pagination and sorting of the returned results. Adjust the query and options based on your model's fields and desired behavior.
+
+## Return Value
+
+- `Promise\<ReturnObject<T>[]>`: A promise that resolves to an array of objects representing the inserted documents. Each object will have the same structure as the model's schema, including additional fields such as `id`, `createdAt`, and `updatedAt`.
+
+## Example: Basic Usage
+
+```ts
+const params = {
+  age: 25,
+  role: 'admin',
+};
+const options = {
+  paramRelationship: 'And',
+  pagination: {
+    limit: 10,
+    page: 1,
+  },
+  sort: {
+    by: 'name',
+    order: 'asc',
+  },
+};
+const results = await UserModel.find(params, options);
+console.log(results);
+```
+
+## Example: With Population
+
+```ts
+const postsWithAuthors = await PostModel.find(
+  { authorId: "user123" },
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      }
+    ]
+  }
+);
+console.log(postsWithAuthors);
+```
+
+## Next steps
+
+- [FindOne](/methods/find-one)
+- [Search](/methods/search)
+
+### Model.findOne() - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/find-one
+DESCRIPTION: Explanation of how Nobox Model Methods "FindOne" works
+
+# `model.findOne(query, options)`
+
+The `model.findOne()` method in Nobox allows you to retrieve a single document from a model based on a specified query and customize the returned result using options.
+
+> **💡 Tip**: This method supports population to fetch related data from other record spaces. See the [Population Example](#example-with-population) below or visit [Population](/methods/populate) for detailed information. 
+
+## Parameters 
+
+- `query`: An object that represents the search criteria. Each key in the object corresponds to a field in the model, and its value is used to match documents with matching field values. For example, `{ age: 25, role: 'admin' }` will return a document where the `age` field is 25 and the `role` field is "admin".
+
+- `options`: An object that provides additional configuration for the query result. It includes the following properties:
+
+  - `paramRelationship` (optional): Specifies the relationship between multiple search parameters. It can be set to `'Or'` or `'And'`. When set to `'Or'`, the query will return a document that matches any of the provided search parameters. When set to `'And'`, the query will return a document that matches all of the provided search parameters. If not specified, the default behavior is `'And'`.
+
+  - `populate` (optional): An array of population configurations to fetch related data from other record spaces. See [Population](/methods/populate) for detailed information.
+
+With the `model.findOne()` method, you can retrieve a single document that matches specific criteria. Adjust the query and options based on your model's fields and desired behavior.
+
+## Return Value
+
+- `Promise\<ReturnObject<T>>`: A promise that resolves to an objects representing the inserted documents. Each object will have the same structure as the model's schema, including additional fields such as `id`, `createdAt`, and `updatedAt`.
+
+## Example: Basic Usage
+
+```ts
+const params = {
+  id: '123456789',
+};
+const options = {
+  paramRelationship: 'And',
+};
+const result = await UserModel.findOne(params, options);
+console.log(result);
+```
+
+## Example: With Population
+
+```ts
+const postWithDetails = await PostModel.findOne(
+  { id: "post123" },
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      },
+      {
+        fields: {
+          from: "category",
+          localKey: "categoryId",
+          foreignKey: "id",
+          newField: "category"
+        },
+        space: "category"
+      }
+    ]
+  }
+);
+console.log(postWithDetails);
+```
+
+## Next steps
+
+- [Insert](/methods/insert)
+- [Search](/methods/search)
+
+### Model.search - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/search
+DESCRIPTION: Explanation of how Nobox Model Method "search" works
+
+# `model.search(params)`
+
+The `model.search()` method in Nobox allows you to search for documents in a model based on specified search parameters and customize the returned results using options.
+
+## Parameters
+- `params` (object): An object that contains the search parameters. It includes the following properties:
+  - `searchableFields` (array): An array of fields to be searched within the model.
+  - `searchText` (string): The text to search for within the specified fields.
+
+- `options`: An object that provides additional configuration for the query results. It includes the following properties:
+
+> **Note**: The `search()` method does not support population. If you need to fetch related data, use the `find()` method instead.
+  - `pagination` (optional): An object that enables pagination of the query results. It includes the following properties:
+
+    - `limit` (required): The maximum number of records to be returned per page. For example, setting `limit` to 10 will return a maximum of 10 documents per page.
+
+    - `page` (optional): The page number to retrieve. If not specified, the default is the first page. For example, setting `page` to 2 will retrieve the second page of results based on the specified `limit`.
+
+  - `sort` (optional): An object that allows you to sort the query results based on a specific field. It includes the following properties:
+
+    - `by` (required): The field to use for sorting. It should be one of the keys of the `ReturnObject<T>` type. For example, setting `by` to `'createdAt'` will sort the documents based on their creation date.
+
+    - `order` (optional): The sort order for the results. It can be `'asc'` (ascending) or `'desc'` (descending). If not specified, the default is `'asc'`. For example, setting `order` to `'desc'` will sort the documents in descending order.
+
+## Return Value
+
+- `Promise<ReturnObject<T>>[]`: A promise that resolves to an object representing the search result. The object will have the same structure as the model's schema, including additional fields such as `id`, `createdAt`, and `updatedAt`.
+
+## Example: Basic Usage
+
+```ts
+const params = {
+  searchableFields: ['name', 'description'],
+  searchText: 'example',
+};
+const options = {
+  pagination: {
+    limit: 10,
+    page: 1,
+  },
+  sort: {
+    by: 'name',
+    order: 'asc',
+  },
+};
+const searchResult = await UserModel.search(params, options);
+console.log(searchResult);
+```
+
+In the above example, we define the search parameters params with the fields to search (name and description) and the search text (example). We also provide options in the options object, specifying the paramRelationship as 'Or' and populating the author field from the AuthorModel to the authorName field in the search results. We call UserModel.search() with the params and options parameters and await the result. Finally, we log the search result to the console.
+
+## Next steps
+- [updateOne](/methods/updateOne)
+
+### Model.insert - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/insert
+DESCRIPTION: Explanation of how Nobox Model Method "insert" works
+
+# `model.insert(body)`
+
+The `model.insert()` method in Nobox allows you to insert multiple documents into a model. 
+
+## Parameters
+  - `body` (array): An array of objects representing the documents to be inserted. Each object should have the same structure as the model's schema.
+
+## Return Value
+
+- `Promise\<ReturnObject<T>[]>`: A promise that resolves to an array of objects representing the inserted documents. Each object will have the same structure as the model's schema, including additional fields such as `id`, `createdAt`, and `updatedAt`.
+
+## Example: Basic Usage
+
+```ts
+const documents = [
+  { name: 'John', age: 25, role: 'user' },
+  { name: 'Jane', age: 30, role: 'admin' },
+];
+const insertedDocuments = await UserModel.insert(documents);
+console.log(insertedDocuments);
+```
+
+## Next steps
+
+- [InsertOne](/methods/insert-one)
+- [Search](/methods/search)
+
+### Model.insertOne - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/insert-one
+DESCRIPTION: Explanation of how Nobox Model Method "insertOne" works
+
+# `model.insertOne(body)`
+
+The `model.insertOne()` method in Nobox allows you to insert a single document into a model. 
+
+## Parameters
+  - `body` (object): An object representing the document to be inserted. It should have the same structure as the model's schema.
+
+## Return Value
+
+- `Promise\<ReturnObject<T>>`: A promise that resolves to an object representing the inserted document. The object will have the same structure as the model's schema, including additional fields such as `id`, `createdAt`, and `updatedAt`.
+
+## Example: Basic Usage
+
+```ts
+const document = { name: 'John', age: 25, role: 'user' };
+const insertedDocument = await UserModel.insertOne(document);
+console.log(insertedDocument);
+```
+In the above example, we define a document to be inserted into the UserModel. We then call UserModel.insertOne() with the document object as the body parameter. The method returns a promise that resolves to the inserted document. We log the inserted document to the console for verification.
+
+## Next steps
+- [Search](/methods/search)
+
+### Model.updateOne - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/update-one
+DESCRIPTION: Explanation of how Nobox Model Method "updateOne" works
+
+# `model.updateOne(query, body, options)`
+
+The `model.updateOne()` method in Nobox allows you to update a single document in a model based on specified parameters including
+
+## Parameters
+- `query` (object): An object that represents the search criteria. Each key in the object corresponds to a field in the model and an extra key called `id` for querying by id, and its value is used to match documents with matching field values.
+
+- `body` (object): An object that contains the updated data for the document. The structure of this object should match the model's schema.
+
+## Return Value
+
+- `Promise\<ReturnObject<T>>`: A promise that resolves to an object representing the updated document. The object will have the same structure as the model's schema, including additional fields such as `id`, `createdAt`, and `updatedAt`.
+
+## Example: Basic Usage
+
+```ts
+const params = {
+  id: '1234567890',
+};
+const body = {
+  name: 'John Doe',
+  age: 30,
+};
+const updatedDocument = await UserModel.updateOne(params, body);
+console.log(updatedDocument);
+```
+
+## Next steps
+- [updateOneById](/methods/update-one-by-id)
+- [Search](/methods/search)
+
+### Model.updateOneById - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/update-one-by-id
+DESCRIPTION: Explanation of how Nobox Model Method "updateOneById" works
+
+# `model.updateOneById(id, body)`
+
+The `model.updateOneById()` method in Nobox allows you to update a single document in a model based on the document's ID and with the provided data in the `body` object.
+
+## Parameters
+- `id` (string): The ID of the document to be updated.
+
+- `body` (object): An object that contains the updated data for the document. The structure of this object should match the model's schema.
+
+## Return Value
+
+- `Promise\<ReturnObject<T>>`: A promise that resolves to an object representing the updated document. The object will have the same structure as the model's schema, including additional fields such as `id`, `createdAt`, and `updatedAt`.
+
+## Example: Basic Usage
+
+```ts
+const id = '1234567890';
+const body = {
+  name: 'John Doe',
+  age: 30,
+};
+const updatedDocument = await UserModel.updateOneById(id, body);
+console.log(updatedDocument);
+```
+
+## Next steps
+- [GetTokenOwner](/methods/get-token-owner)
+- [Search](/methods/search)
+
+### Model.deleteOneById - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/delete-one-by-id
+DESCRIPTION: Explanation of how Nobox Model Method "deleteOneById" works
+
+# `model.deleteOneById(id)`
+
+The `model.deleteOneById()` method in Nobox allows you to delete a single document in a model based on the document's ID.
+
+## Parameters
+- `id` (string): The ID of the document to be deleted.
+
+## Return Value
+- `Promise\<ReturnObject<T>>`: A promise that resolves to an object representing the deleted document. The object will have the same structure as the model's schema, including additional fields such as `id`, `createdAt`, and `updatedAt`.
+
+## Example: Basic Usage
+
+```ts
+const id = '1234567890';
+const deletedDocument = await UserModel.deleteOneById(id);
+console.log(deletedDocument);
+```
+
+## Next steps
+- [Search](/methods/search)
+
+### Population - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/populate
+DESCRIPTION: Explanation of how Nobox Population works to fetch related data
+
+# Population
+
+Population in Nobox allows you to fetch related data from other record spaces in a single query, similar to SQL JOINs but with the flexibility of NoSQL. This feature enables you to create rich, relational-like data structures without the complexity of traditional database joins.
+
+## Overview
+
+Population works by defining relationships between record spaces using field mappings. When you perform a `find()` or `findOne()` operation, you can specify population options to automatically fetch related data and include it in your results.
+
+## Population Structure
+
+The population is defined in the `options` parameter using the `populate` property:
+
+```typescript
+export type Options<T extends CObject> = {
+  populate?: {
+    fields: {
+      from: string;        // Source space name
+      foreignKey: string;  // Field in source space to match
+      localKey: string;    // Field in current record to match against
+      newField: string;    // New field name to add populated data
+    };
+    space: string;         // Target space name
+  }[];
+};
+```
+
+## Parameters
+
+### `populate` Array
+An array of population configurations, each containing:
+
+- **`fields.from`** (string): The name of the source record space to fetch data from. This is the `space` property from your schema definition (e.g., "user", "category", "profile")
+- **`fields.foreignKey`** (string): The field name in the source space to match against
+- **`fields.localKey`** (string): The field name in the current record to match with the foreign key
+- **`fields.newField`** (string): The name of the new field that will contain the populated data
+- **`fields.multi`** (boolean, optional): When `true`, returns an array of related records. When `false` or omitted, returns a single record. Defaults to `false`.
+- **`space`** (string): The target space name (usually same as `from`). This should match the `space` property from your schema definition
+
+## Where Do the Values Come From?
+
+The `from` and `space` values come from the `space` property in your schema definitions. Here's how to find them:
+
+### Schema Definitions
+```typescript
+export const UserStructure: Space<User> = {
+  space: "user",           // ← This is your "from" value
+  description: "User records",
+  structure: { /* ... */ }
+};
+export const ProfileStructure: Space<Profile> = {
+  space: "profile",        // ← This is your "from" value
+  description: "User profiles",
+  structure: { /* ... */ }
+};
+export const CategoryStructure: Space<Category> = {
+  space: "category",       // ← This is your "from" value
+  description: "Post categories", 
+  structure: { /* ... */ }
+};
+```
+
+### Using in Population
+```typescript
+const postsWithDetails = await PostModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",        // ← From UserStructure.space
+          localKey: "authorId",
+          foreignKey: "id", 
+          newField: "author"
+        },
+        space: "user"          // ← Same as "from"
+      },
+      {
+        fields: {
+          from: "category",    // ← From CategoryStructure.space
+          localKey: "categoryId",
+          foreignKey: "id",
+          newField: "category"
+        },
+        space: "category"      // ← Same as "from"
+      }
+    ]
+  }
+);
+```
+
+## Relationship Types
+
+### One-to-One Relationship
+When each record in the current space has at most one related record in the source space.
+
+```typescript
+{
+  fields: {
+    from: "profile",        // ← From ProfileStructure.space
+    localKey: "id",         // User.id
+    foreignKey: "userId",   // Profile.userId
+    newField: "profile"     // Result: user.profile
+  },
+  space: "profile"          // ← Same as "from"
+}
+```
+
+### Many-to-One Relationship
+When multiple records in the current space can relate to the same record in the source space.
+
+```typescript
+{
+  fields: {
+    from: "user",
+    localKey: "authorId",      // Post.authorId
+    foreignKey: "id",          // User.id
+    newField: "author"         // Result: post.author
+  },
+  space: "user"
+}
+```
+
+## Examples
+
+### Example 1: Basic Population
+
+```typescript
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  authorId: string;
+}
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+const postsWithAuthors = await PostModel.find(
+  { authorId: "user123" },
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      }
+    ]
+  }
+);
+```
+
+### Example 2: Multiple Population Fields
+
+```typescript
+const postsWithDetails = await PostModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      },
+      {
+        fields: {
+          from: "category",
+          localKey: "categoryId",
+          foreignKey: "id",
+          newField: "category"
+        },
+        space: "category"
+      }
+    ]
+  }
+);
+```
+
+### Example 3: One-to-Many Population
+
+```typescript
+const usersWithPosts = await UserModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "post",
+          localKey: "id",
+          foreignKey: "authorId",
+          newField: "posts",
+          multi: true  // ← Returns array of posts
+        },
+        space: "post"
+      }
+    ]
+  }
+);
+```
+
+### Example 4: Real-World Use Case
+
+Based on a practical blog system implementation:
+
+```typescript
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  authorId: string;
+  categoryId: string;
+  publishedAt: string;
+}
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+  description: string;
+}
+const getPostsWithDetails = async (userId?: string) => {
+  const posts = await PostModel.find(
+    userId ? { authorId: userId } : {},
+    {
+      populate: [
+        {
+          fields: {
+            from: "user",
+            localKey: "authorId",
+            foreignKey: "id",
+            newField: "author"
+          },
+          space: "user"
+        },
+        {
+          fields: {
+            from: "category",
+            localKey: "categoryId",
+            foreignKey: "id",
+            newField: "category"
+          },
+          space: "category"
+        }
+      ]
+    }
+  );
+
+  return posts.map((post: any) => ({
+    ...post,
+    authorName: post.author?.name,
+    authorEmail: post.author?.email,
+    categoryName: post.category?.name
+  }));
+};
+```
+
+## Best Practices
+
+### 1. **Field Naming**
+- Use descriptive names for `newField` to clearly indicate the relationship
+- Consider using camelCase for consistency with JavaScript conventions
+
+### 2. **Performance Considerations**
+- Population adds complexity to queries, so use it judiciously
+- Consider the number of related records that will be fetched
+- For large datasets, consider pagination
+
+### 3. **Type Safety**
+- Define interfaces for populated data to maintain type safety
+- Use TypeScript interfaces to describe the expected structure
+
+```typescript
+interface PostWithAuthor extends Post {
+  author?: User;
+  category?: Category;
+}
+```
+
+### 4. **Error Handling**
+- Handle cases where related data might not exist
+- Use optional chaining when accessing populated fields
+
+```typescript
+const authorEmail = post.author?.email || 'No email available';
+```
+
+## Method Support
+
+Population is supported by the following methods:
+- ✅ **`find()`**: Full population support
+- ✅ **`findOne()`**: Full population support
+- ❌ **`search()`**: Population not supported
+- ❌ **`insert()`**: Population not supported
+- ❌ **`insertOne()`**: Population not supported
+- ❌ **`updateOne()`**: Population not supported
+- ❌ **`updateOneById()`**: Population not supported
+- ❌ **`deleteOneById()`**: Population not supported
+
+## Limitations
+
+1. **Single Query**: Population happens in a single query, so all related data is fetched at once
+2. **No Nested Population**: Currently, you cannot populate data from already populated fields
+3. **No Aggregation**: Population is for fetching related records, not for aggregating data
+4. **Limited Method Support**: Only `find()` and `findOne()` methods support population
+
+## Quick Reference
+
+### Finding Space Names
+```typescript
+export const UserStructure: Space<User> = {
+  space: "user",           // ← Use this as "from" and "space"
+};
+
+export const CategoryStructure: Space<Category> = {
+  space: "category",       // ← Use this as "from" and "space"
+};
+```
+
+### Population Template
+```typescript
+{
+  fields: {
+    from: "SPACE_NAME",    // ← From your schema.space
+    localKey: "FIELD_IN_CURRENT_RECORD",
+    foreignKey: "FIELD_IN_SOURCE_RECORD", 
+    newField: "NEW_FIELD_NAME",
+    multi: false           // ← true for arrays, false for single record
+  },
+  space: "SPACE_NAME"      // ← Same as "from"
+}
+```
+
+## Next Steps
+
+- [Find Method](/methods/find)
+- [FindOne Method](/methods/find-one)
+- [Search Method](/methods/search)
+- [Schema Overview](/schema/overview)
+
+### File Upload - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/upload
+DESCRIPTION: Upload files to Nobox cloud storage using the direct API endpoint with authentication and progress tracking
+
+# File Upload
+
+The Nobox file upload system allows you to upload files directly to cloud storage (AWS S3) and manage them through the Nobox API. This feature is part of the Nobox backend-as-a-service platform and provides secure, scalable file storage with automatic metadata management.
+
+## Prerequisites
+
+Before using the file upload feature, ensure you have:
+
+- A Nobox account and project created
+- Your API token (NOBOX_TOKEN) from your Nobox dashboard
+- Your project slug (projectSlug) from your Nobox dashboard
+- A file to upload (supports all common file types)
+
+## Examples
+
+### Basic File Upload
+
+```ts
+import axios from 'axios';
+const NOBOX_TOKEN = 'your-api-token-from-dashboard';
+const projectSlug = 'your-project-slug';
+const UPLOAD_URL = `https://api.nobox.cloud/_f_/${projectSlug}/upload`;
+const formData = new FormData();
+formData.append('file', file); // file is a File object from input or drag-drop
+const response = await axios.post(UPLOAD_URL, formData, {
+    headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${NOBOX_TOKEN}`,
+    },
+});
+const uploadedFile = response.data;
+console.log('Upload successful:', uploadedFile);
+```
+
+### File Upload with Progress Tracking
+
+```ts
+const response = await axios.post(UPLOAD_URL, formData, {
+    headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${NOBOX_TOKEN}`,
+    },
+    onUploadProgress: (progressEvent) => {
+        const percent = Math.floor(
+            (progressEvent.loaded * 100) / progressEvent.total
+        );
+        console.log(`Upload progress: ${percent}%`);
+    },
+});
+```
+
+### Error Handling
+
+```ts
+try {
+    const response = await axios.post(UPLOAD_URL, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${NOBOX_TOKEN}`,
+        },
+    });
+    
+    const uploadedFile = response.data;
+    console.log('Upload successful:', uploadedFile);
+} catch (error) {
+    if (error.response?.status === 401) {
+        console.error('Authentication failed - check your API token');
+    } else if (error.response?.status === 413) {
+        console.error('File too large - check file size limits');
+    } else if (error.response?.status === 400) {
+        console.error('Invalid request - check file format and request structure');
+    } else {
+        console.error('Upload failed:', error.message);
+    }
+}
+```
+
+## Endpoint
+
+**POST** `https://api.nobox.cloud/_f_/{projectSlug}/upload`
+
+**Base URL**: `https://api.nobox.cloud/_f_/`  
+**Path Parameter**: `{projectSlug}` - Your Nobox project slug  
+**Method**: POST  
+**Content Type**: multipart/form-data
+
+## Authentication
+
+All file upload requests require authentication using your Nobox API token:
+
+```
+Authorization: Bearer {NOBOX_TOKEN}
+```
+
+**Token Location**: Available on the Access Tokens page in your Nobox dashboard  
+**Token Format**: Bearer token authentication  
+**Security**: HTTPS required for all requests
+
+## Request Structure
+
+### Headers
+
+```
+Content-Type: multipart/form-data
+Authorization: Bearer {NOBOX_TOKEN}
+```
+
+### Body (FormData)
+
+- `file` (File): The file to be uploaded. This should be sent as part of a FormData object.
+
+**File Requirements**:
+- Supported formats: All common file types
+
+## Response Structure
+
+### Success Response
+
+**Status Code**: 200 OK  
+**Content Type**: application/json
+
+```typescript
+interface CloudFile {
+    _id: string;           // Unique file identifier (UUID)
+    name: string;          // Generated filename with unique ID
+    originalName: string;  // Original filename as uploaded
+    ownedBy: string;       // User ID who uploaded the file
+    s3Link: string;        // Direct link to the file in S3
+    updatedAt: string;     // Last update timestamp (ISO 8601)
+    createdAt: string;     // Creation timestamp (ISO 8601)
+}
+```
+
+### Error Responses
+
+**401 Unauthorized**: Invalid or missing API token  
+**413 Payload Too Large**: File exceeds size limit  
+**400 Bad Request**: Invalid file or malformed request  
+**500 Internal Server Error**: Server processing error
+
+## Troubleshooting
+
+### Common Issues
+
+**401 Unauthorized Error**
+- Verify your API token is correct
+- Ensure the token is included in the Authorization header
+- Check that your token hasn't expired
+
+**413 Payload Too Large**
+- Check file size (limit is typically 100MB)
+- Compress large files before upload
+- Consider chunked upload for very large files
+
+**400 Bad Request**
+- Ensure file is properly added to FormData
+- Check that Content-Type header is set correctly
+- Verify file is not corrupted
+
+**Network Errors**
+- Check internet connection
+- Verify endpoint URL is correct
+- Ensure HTTPS is used for all requests
+
+### Best Practices
+
+1. **File Validation**: Always validate file type and size before upload
+2. **Error Handling**: Implement comprehensive error handling for all upload scenarios
+3. **Progress Tracking**: Use progress tracking for better user experience
+4. **Security**: Never expose API tokens in client-side code for production
+5. **Retry Logic**: Implement retry logic for network failures
+6. **File Naming**: Consider sanitizing filenames for security
+
+## Related Documentation
+
+- [Integration Guide](/integrate-nobox) - Learn how to integrate Nobox into your application
+
+## Next Steps
+
+- [Find](/methods/find) - Query uploaded files and metadata
+- [Search](/methods/search) - Search through uploaded files and metadata
+- [InsertOne](/methods/insert-one) - Store file references in your database
+
+### Model.getKeys - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/get-keys
+DESCRIPTION: Explanation of how Nobox Model Method "getKeys" works
+
+# `model.getKeys()`
+
+The `model.getKeys()` method in Nobox allows you to retrieve the key values stored in a key-group model.
+
+## Return Value
+
+- `Promise<Array<ReturnObject<T>>>`: A promise that resolves to an array of objects representing the key values. Each object will have the same structure as the model's schema, including additional fields such as `id`, `createdAt`, and `updatedAt`.
+
+## Example: Basic Usage
+
+```ts
+const keys = await KeyGroupModel.getKeys();
+console.log(keys);
+```
+
+The model.getKeys() method retrieves all the key values stored in a key-group model. It returns an array of objects representing the key values. Each object in the array has the same structure as the model's schema, including additional fields such as id, createdAt, and updatedAt. Use this method to fetch the key values and utilize them in your application as needed.
+
+## Next steps
+
+- [SetKeys](/methods/set-keys)
+- [Search](/methods/search)
+
+### Model.setKeys - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/set-keys
+DESCRIPTION: Explanation of how Nobox Model Method "setKeys" works
+
+# `model.setKeys(body)`
+
+The `model.setKeys()` method in Nobox allows you to set key-value pairs in the key-group model.
+
+## Parameters
+- `body` (object): An object representing the key-value pairs to be set in the key-group model. Each key-value pair should correspond to a field and its value in the model's schema.
+
+## Return Value
+
+- `Promise\<ReturnObject<T>[]>`: A promise that resolves to an array of objects representing the updated key-value pairs. Each object will have the same structure as the model's schema, including additional fields such as `id`, `createdAt`, and `updatedAt`.
+
+## Example: Basic Usage
+
+```ts
+const keyValues = {
+  key1: 'value1',
+  key2: 'value2',
+};
+const updatedKeys = await KeyGroupModel.setKeys(keyValues);
+console.log(updatedKeys);
+
+```
+
+## Next steps
+
+- [GetKeys](/methods/get-keys)
+- [Search](/methods/search)
+
+### Model.getTokenOwner - Nobox API Reference
+URL: https://docs.nobox.cloud/methods/get-token-owner
+DESCRIPTION: Explanation of how Nobox Model Method "getTokenOwner" works
+
+# `model.getTokenOwner(token)`
+
+The `model.getTokenOwner()` method in Nobox allows you to retrieve the owner of a token associated with a model.
+
+Note: This token should be the token returned by `Nobox.login`, and the model used here should be the model used for creating `Nobox.login`
+
+## Parameters
+- `token` (string): The token for which you want to retrieve the owner.
+
+## Return Value
+
+- `Promise\<ReturnObject<T>>`: A promise that resolves to an object representing the owner of the token. The object will have the same structure as the model's schema, including additional fields such as `id`, `createdAt`, and `updatedAt`.
+
+## Example: Basic Usage
+
+```ts
+const token = 'abcdef123456';
+const tokenOwner = await UserModel.getTokenOwner(token);
+console.log(tokenOwner);
+```
+In the above example, we define the token for which we want to retrieve the owner. We call UserModel.getTokenOwner() with the token parameter and await the result. Finally, we log the token owner to the console.
+
+## Next steps
+
+- [SetKeys](/methods/set-keys)
+- [Search](/methods/search)
+
+## Schema
+### The Nobox Schema
+URL: https://docs.nobox.cloud/schema/overview
+DESCRIPTION: How to Set up Nobox Schema
+
+# {% $markdoc.frontmatter.title %}
+
+To perform CRUD operations on records using Nobox, you will need to define the schema for each type of record. For instance, for you to create or delete Users in an application, you will need to define the schema for `Users`.
+
+## Schema Types
+
+Nobox supports two types of schemas for structuring your data: 
+   - Rowed Schema
+   - Key-Value Schema.
+   
+Each schema type offers different ways to organize and represent your data. Let's explore these schema types in more detail:
+
+### Rowed Schema
+
+Rowed Schema represents structured data in a row-based format. It is similar to a traditional table structure in a relational database, where each row represents an individual record. Here's an example of defining a Rowed Schema using Nobox:
+
+> Note: Check [Nobox Integration Guide](/integrate-nobox) to see how the config file in the code was created
+
+```typescript
+import { Space } from "nobox-client";
+import { createRowedSchema } from "../config";
+
+interface User {
+  id: string;
+  name: string;
+  age: number;
+  email: string;
+}
+
+export const UserStructure: Space<User> = {
+  space: "User",
+  description: "A Rowed Schema for User records",
+  structure: {
+    id: {
+      description: "User ID",
+      type: String,
+      required: true,
+    },
+    name: {
+      description: "User's name",
+      type: String,
+      required: true,
+    },
+    age: {
+      description: "User's age",
+      type: Number,
+      required: true,
+    },
+    email: {
+      description: "User's email address",
+      type: String,
+      required: true,
+    },
+  },
+};
+
+export const UserModel = createRowedSchema<User>(UserStructure);
+```
+
+In this example, we define a User record with fields such as "id", "name", "age", and "email". Each field has a specified type and can be marked as required or optional based on your needs.
+
+### Advanced Features
+
+Rowed Schema also supports population, allowing you to fetch related data from other record spaces in a single query. This enables you to create rich, relational-like data structures without the complexity of traditional database joins.
+
+**Example:**
+```typescript
+const postsWithAuthors = await PostModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      }
+    ]
+  }
+);
+```
+
+For detailed information about population, see [Population](/methods/populate). 
+
+### Key-Value Schema
+Key-Value Schema represents data as a collection of key-value pairs. It is similar to a dictionary or a JSON object structure, where the keys uniquely identify the values associated with them. Here's an example of defining a Key-Value Schema using Nobox:
+
+```typescript
+import { Space } from "nobox-client";
+import { createKeyValueSchema } from "../config";
+
+interface Settings {
+  id: string;
+  values: Record<string, any>;
+}
+
+export const SettingsStructure: Space<Settings> = {
+  space: "Settings",
+  description: "A Key-Value Schema for application settings",
+  structure: {
+    id: {
+      description: "Settings ID",
+      type: String,
+      required: true,
+    },
+    values: {
+      description: "Key-Value pairs representing settings",
+      type: Object,
+      required: true,
+    },
+  },
+};
+
+export const SettingsModel = createKeyValueSchema<Settings>(SettingsStructure);
+```
+
+In this example, we define a Settings record with a "values" field of type Object, which can hold various key-value pairs representing application settings.
+
+These schema types provide flexibility in representing structured data in Nobox. Choose the schema type that best fits your data model and use case to create powerful and scalable applications with ease.
+
+## Differences between Rowed and Key-value Schema
+|                   | Rowed Schema                                                                                                                                                                                                                                                                                                            | Key-Value Schema                                                                                                                                                                                                                                                           |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Definition        | Represents structured data in a row-based format, similar to a traditional table structure in a relational database.                                                                                                                                                                                                    | Represents data as a collection of key-value pairs, similar to a dictionary or JSON object structure.                                                                                                                                                                      |
+| Methods           | - `find`: Retrieves an array of records that match the specified parameters.                                                                                                                                                                             | - `setKeys`: Sets the key-value pairs for the specified space.                                                                                                                                                                                                               |
+|                   | - `findOne`: Retrieves a single record that matches the specified parameters.                                                                                                                                                                           | - `getKeys`: Retrieves the key-value pairs for the specified space.                                                                                                                                                                                                           |
+|                   | - `search`: Searches for records based on the provided search text in the specified searchable fields.                                                                                                                                                  |                                                                                                                                                                                                              |
+|                   | - `insert`: Inserts an array of records into the specified space.                                                                                                                                                                                     |                                                                                                                                                                                                              |
+| Data Structure    | Structured data organized in rows, where each row represents an individual record.                                                                                                                                                                                                                                     | Collection of key-value pairs where keys uniquely identify the associated values.                                                                                                                                                                                        |
+
+## Next steps
+
+- [Schema -  API Reference](/schema/api-reference)
+- [Population Guide](/schema/population-guide)
+
+### Schema Creation Concepts
+URL: https://docs.nobox.cloud/schema/concepts
+DESCRIPTION: Some Concepts on Nobox Schema
+
+# {% $markdoc.frontmatter.title %}
+
+## Required Fields and Default Values
+Fields in a schema can be marked as required or optional. Required fields must have a value assigned to them when creating or updating records. Optional fields, on the other hand, can be left empty if needed.
+
+You can specify the required flag for each field in the schema definition. For example:
+
+```ts
+age: {
+  description: "User's age",
+  type: Number,
+  required: true,
+}
+```
+
+Additionally, you can define default values for fields using the default property. The default value will be assigned to the field if no explicit value is provided during record creation. Here's an example:
+```ts
+age: {
+  description: "User's age",
+  type: Number,
+  defaultValue: 18,
+},
+
+```
+
+## Hashing Fields
+Nobox allows you to apply hashing to any field within your schema. Hashing sensitive data adds an extra layer of security by transforming the data into a fixed-size hash value that is non-reversible.
+
+To hash a field in Nobox, you can use the `hashed: true` option in the field definition within the schema. This option instructs Nobox to automatically hash the field value before storing it in the database.
+
+Here's an example:
+```ts
+age: {
+  description: "User's Password",
+  type: Number,
+  defaultValue: 18,
+}
+```
+
+### Benefits of Field Hashing
+Hashing sensitive fields in your Nobox schema offers several benefits:
+- Data Security: Hashing transforms sensitive data into a non-reversible format, making it more secure. Even if the database is compromised, the original data remains protected.
+- Privacy Protection: By hashing sensitive fields, you ensure that the actual values are not easily accessible to unauthorized individuals or even administrators with database access.
+- Data Integrity: Hashing allows you to verify the integrity of the data. If the hashed value matches the stored hash, it indicates that the field value has not been tampered with.
+
+### Note on Querying
+When using a hashed field in your schema, it's important to note that the hashed value will be stored and used for querying purposes. This means you can still query with your hashed field. However, when records are returned through any of the Rowed Schema methods, the hashed field value will not be included. This ensures that the hashed value remains protected and secure.
+
+## Next steps
+
+- [Creating Schemas](/schema/concepts)
+
+### Example Usage - Rowed Schema vs Key-Value Schema
+URL: https://docs.nobox.cloud/schema/example-usage
+DESCRIPTION: Examples on how to setup rowed and key group schemas in Nobox
+
+# {% $markdoc.frontmatter.title %}
+In this example, we'll demonstrate the usage of Nobox with both Rowed Schema and Key-Value Schema, emphasizing their differences in data structure and available methods.
+
+### Rowed Schema Example
+Rowed Schema represents structured data in a row-based format, similar to a traditional table structure in a relational database. Let's create a simple "User" record using Rowed Schema.
+
+#### Step 1: Define the Rowed Schema
+First, define the Rowed Schema for the "User" record:
+
+```ts
+import { Space } from "nobox-client";
+import { createRowedSchema } from "../config";
+
+interface User {
+  id: string;
+  name: string;
+  age: number;
+  email: string;
+}
+
+export const UserStructure: Space<User> = {
+  space: "User",
+  description: "A Rowed Schema for User records",
+  structure: {
+    id: {
+      description: "User ID",
+      type: String,
+      required: true,
+    },
+    name: {
+      description: "User's name",
+      type: String,
+      required: true,
+    },
+    age: {
+      description: "User's age",
+      type: Number,
+      required: true,
+    },
+    email: {
+      description: "User's email address",
+      type: String,
+      required: true,
+    },
+  },
+};
+
+export const UserModel = createSchema<User>(UserStructure);
+```
+#### Step 2: Perform Operations with Rowed Schema
+Now, let's perform some operations using the Rowed Schema:
+
+```ts
+const allUsers = await UserModel.find();
+console.log("All Users:", allUsers);
+const newUser = {
+  id: "1",
+  name: "John Doe",
+  age: 30,
+  email: "johndoe@example.com",
+};
+const insertedUser = await UserModel.insertOne(newUser);
+console.log("Inserted User:", insertedUser);
+const updatedUser = await UserModel.updateOneById("1", { age: 31 });
+console.log("Updated User:", updatedUser);
+```
+With Rowed Schema, data is structured in rows, and we can perform operations like finding all users, inserting new users, and updating existing users by their ID.
+
+### Advanced Rowed Schema with Population
+
+Rowed Schema also supports population to fetch related data from other record spaces:
+
+```ts
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  authorId: string; // Foreign key to User
+  categoryId: string; // Foreign key to Category
+}
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+  description: string;
+}
+const postsWithDetails = await PostModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      },
+      {
+        fields: {
+          from: "category",
+          localKey: "categoryId",
+          foreignKey: "id",
+          newField: "category"
+        },
+        space: "category"
+      }
+    ]
+  }
+);
+console.log(postsWithDetails);
+```
+
+### Key-Value Schema Example
+Key-Value Schema represents data as a collection of key-value pairs, similar to a dictionary or JSON object structure. Let's create a simple "Settings" record using Key-Value Schema.
+
+#### Step 1: Define the Key-Value Schema
+First, define the Key-Value Schema for the "Settings" record:
+
+```ts
+import { Space } from "nobox-client";
+import { createSchema } from "../config";
+
+interface Settings {
+  id: string;
+  values: Record<string, any>;
+}
+
+export const SettingsStructure: Space<Settings> = {
+  space: "Settings",
+  description: "A Key-Value Schema for application settings",
+  structure: {
+    id: {
+      description: "Settings ID",
+      type: String,
+      required: true,
+    },
+    values: {
+      description: "Key-Value pairs representing settings",
+      type: Object,
+      required: true,
+    },
+  },
+};
+
+export const SettingsModel = createSchema<Settings>(SettingsStructure);
+```
+
+#### Step 2: Perform Operations with Key-Value Schema
+Now, let's perform some operations using the Key-Value Schema:
+
+```ts
+const settingsData = {
+  id: "1",
+  values: {
+    theme: "dark",
+    notifications: true,
+  },
+};
+const updatedSettings = await SettingsModel.setKeys(settingsData);
+console.log("Updated Settings:", updatedSettings);
+const allSettings = await SettingsModel.getKeys();
+console.log("All Settings:", allSettings);
+```
+
+With Key-Value Schema, we can set key-value pairs for settings and retrieve all key-value pairs associated with the settings.
+
+### Important Note: Interface Definition Best Practices
+
+When defining interfaces for your record structures, **do not include** `id`, `createdAt`, and `updatedAt` fields in your interface definition. These fields are automatically added by Nobox and are always returned with every record.
+
+**❌ Incorrect:**
+```ts
+interface User {
+  id: string;           // Don't include these
+  name: string;
+  age: number;
+  email: string;
+  createdAt: string;    // Don't include these
+  updatedAt: string;    // Don't include these
+}
+```
+
+**✅ Correct:**
+```ts
+import { ReturnObject } from "nobox-client";
+
+interface User {
+  name: string;
+  age: number;
+  email: string;
+}
+const user: ReturnObject<User> = await UserModel.findOne({ email: "john@example.com" });
+```
+
+The `ReturnObject<T>` type automatically extends your interface with the required fields:
+```ts
+type ReturnObject<T> = T & {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+```
+
+## Next steps
+
+- [Interface Guidelines](/schema/interface-guidelines)
+- [Population Guide](/schema/population-guide)
+- [Population API Reference](/methods/populate)
+
+### Interface Definition Guidelines
+URL: https://docs.nobox.cloud/schema/interface-guidelines
+DESCRIPTION: Best practices for creating TypeScript interfaces in Nobox
+
+# Interface Definition Guidelines
+
+When creating TypeScript interfaces for your Nobox record structures, follow these best practices to ensure clean, maintainable code.
+
+## ❌ Don't Include These Fields
+
+The following fields are automatically managed by Nobox and should **never** be included in your interface definitions:
+
+- `id` - Automatically generated by Nobox
+- `createdAt` - Automatically set by Nobox
+- `updatedAt` - Automatically updated by Nobox
+
+## ✅ Correct Interface Definition
+
+```typescript
+import { ReturnObject } from "nobox-client";
+
+interface User {
+  name: string;
+  age: number;
+  email: string;
+}
+```
+
+## Using ReturnObject for Type Safety
+
+When working with return types from Nobox operations, use the `ReturnObject<T>` type:
+
+```typescript
+const user: ReturnObject<User> = await getUser(id);
+```
+
+## Complete Example
+
+```typescript
+import { Space, ReturnObject } from "nobox-client";
+import { createRowSchema } from "../config";
+interface Tweet {
+  content: string;
+  authorId: string;
+  media: string[];
+  likesCount: number;
+}
+export const TweetStructure: Space<Tweet> = {
+  space: "tweet",
+  description: "Twitter clone tweet records",
+  structure: {
+    content: {
+      description: "Tweet content text",
+      type: String,
+      required: true,
+    },
+    authorId: {
+      description: "ID of the tweet author",
+      type: String,
+      required: true,
+    },
+    media: {
+      description: "Array of media URLs",
+      type: Array,
+      required: false,
+      defaultValue: [],
+    },
+    likesCount: {
+      description: "Number of likes",
+      type: Number,
+      required: false,
+      defaultValue: 0,
+    },
+  },
+};
+
+export const TweetModel = createRowSchema<Tweet>(TweetStructure);
+const tweet: ReturnObject<Tweet> = await TweetModel.findOne({ id: "123" });
+```
+
+## Why This Matters
+
+1. **Clean Interfaces**: Focus on business data, not system fields
+2. **Type Safety**: ReturnObject<T> ensures proper typing
+3. **Consistency**: Follows Nobox conventions
+4. **Maintainability**: Easier to understand and modify
+5. **Prevents Confusion**: Clear separation between user data and system data
+
+## Next Steps
+
+- [Schema Examples](/schema/example-usage)
+- [Population Guide](/schema/population-guide)
+- [API Reference](/schema/api-reference)
+
+### Schema - API Reference
+URL: https://docs.nobox.cloud/schema/api-reference
+DESCRIPTION: API Reference for Schema
+
+# {% $markdoc.frontmatter.title %}
+
+## Schema Structure
+Here are the available options you can include in your schema structure:
+
+- `space` (string): The name of the schema space. It represents the logical grouping or category of your data.
+- `description` (string): A description of the schema, providing additional information about its purpose or usage.
+- `structure` (object or Type Constructor): An object that defines the properties for your fields or a type constructor that determines the type of your field
+- `initialData`: This is a array of objects you can add to your schema to serve as the initial ( seed) data for that record space. On first call , your record space will have this initial data
+
+For Example:
+
+```ts
+
+const userSchema: Space<User> = {
+  space: "User",
+  description: "Schema for User records",
+  initialData: [
+    {
+      name: "akin",
+      age: 20,
+      email "akin@gmail.com"
+    },
+    {
+      name: "Dave",
+      age: 30,
+      email: "dave@yahoo.com"
+    }
+  ],
+  structure: {
+    name: String,
+    age: Number,
+    email: {
+      type: String,
+      required: true,
+      description: "User's email address",
+    },
+  },
+};
+
+```
+
+## Structure
+
+There are two ways to define the structure of a schema, you can specify the field property with an Object value or a type constructor. Here are examples explaining the concept below:
+
+{% side-by-side %}
+
+{% item %}
+
+### Example: Using Object Value
+
+{% markdoc-example %}
+
+```ts
+const userSchema: Space<User> = {
+  space: "User",
+  description: "Schema for User records",
+  structure: {
+    id: {
+      type: String,
+      required: true,
+      description: "User ID",
+    },
+    name: {
+      type: String,
+      required: true,
+      description: "User's name",
+    },
+    age: {
+      type: Number,
+      required: true,
+      description: "User's age",
+    },
+    email: {
+      type: String,
+      required: true,
+      description: "User's email address",
+    },
+  },
+};
+```
+
+{% /markdoc-example %}
+
+When using the object value: Here are the available configuration options for each property:
+
+- `type` (string or constructor): The data type of the property. Below are the data types allowed.
+    - `String`: Represents textual data.
+    - `Number`: Represents numeric data.
+    - `Boolean`: Represents a boolean value (true or false).
+    - `Array`: Represents an array of values. You can choose the appropriate data type based on the nature of your data and the operations you intend to perform.
+- `required` (boolean): Indicates whether the property is required or optional.
+- `defaultValue` (any): Specifies a default value for the property if no value is provided.
+- `hashed` (boolean): Indicates whether the property value should be hashed for secure storage, such as passwords or sensitive data.
+- `comment` (string): A comment or additional information about the property.
+
+{% /item %}
+
+{% item %}
+
+### Example: Using Type Constructors
+
+{% markdoc-example %}
+
+```ts
+const userSchema: Space<User> = {
+  space: "User",
+  description: "Schema for User records",
+  structure: {
+    id: String,
+    name: String,
+    age: Number,
+    email: {
+      type: String,
+      required: true,
+      description: "User's email address",
+    },
+  },
+};
+```
+
+{% /markdoc-example %}
+
+When using the type constructor: Here are the available types for each property, same as the `type` field in the Object Configuration above:
+- `String`: Represents textual data.
+- `Number`: Represents numeric data.
+- `Boolean`: Represents a boolean value (true or false).
+- `Array`: Represents an array of values. You can choose the appropriate data type based on the nature of your data and the operations you intend to perform.
+
+**Note**: When type constructor is being used instead of the Object configuration, the other configuration fields are assumed with the following defaults:
+- `required`: false,
+-  `description`: empty string
+-  `required`: empty string
+-  `defaultValue`: undefined
+- `hashed`: false
+- `comment`: undefined
+
+{% /markdoc-example %}
+
+{% /item %}
+
+{% /side-by-side %}
+
+### Example: Using Both Object Value and Type Constructors
+
+```ts
+const userSchema: Space<User> = {
+  space: "User",
+  description: "Schema for User records",
+  structure: {
+    id: String,
+    name: String,
+    age: Number,
+    email: String,
+  },
+};
+```
+
+## Next steps
+
+- [Schema Example Usage](/schema/example-usage)
+
+### Population Guide - Best Practices
+URL: https://docs.nobox.cloud/schema/population-guide
+DESCRIPTION: A comprehensive guide to using population in Nobox
+
+# Population Guide
+
+This guide provides best practices and advanced techniques for using population in Nobox.
+
+## Understanding Relationships
+
+### Where Do Space Names Come From?
+The `from` and `space` values in population come from the `space` property in your schema definitions:
+
+```typescript
+export const UserStructure: Space<User> = {
+  space: "user",           // ← Use this as "from" and "space"
+};
+
+export const CategoryStructure: Space<Category> = {
+  space: "category",       // ← Use this as "from" and "space"  
+};
+```
+
+### One-to-One Relationships
+- Each record in the current space has at most one related record
+- Example: User → Profile
+
+### Many-to-One Relationships  
+- Multiple records can relate to the same record
+- Example: Post → User (many posts, one user)
+
+### One-to-Many Relationships
+- One record relates to multiple records
+- Use with `multi: true` option
+
+```typescript
+{
+  fields: {
+    from: "post",
+    localKey: "id",         // User.id
+    foreignKey: "authorId", // Post.authorId
+    newField: "posts",
+    multi: true             // ← Returns array of posts
+  },
+  space: "post"
+}
+```
+
+## Advanced Patterns
+
+### Conditional Population
+```typescript
+
+const posts = await PostModel.find(
+  { published: true },
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",        // ← From UserStructure.space
+          localKey: "authorId", 
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"          // ← Same as "from"
+      }
+    ]
+  }
+);
+```
+
+### Multiple Population Levels
+```typescript
+const postsWithAuthorAndProfile = await PostModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id", 
+          newField: "author"
+        },
+        space: "user"
+      },
+      {
+        fields: {
+          from: "profile",
+          localKey: "author.id", // Access populated field
+          foreignKey: "userId",
+          newField: "authorProfile"
+        },
+        space: "profile"
+      }
+    ]
+  }
+);
+```
+
+## Performance Optimization
+
+### 1. Selective Population
+Only populate the fields you need:
+```typescript
+const posts = await PostModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      }
+    ]
+  }
+);
+```
+
+### 2. Pagination with Population
+```typescript
+const posts = await PostModel.find(
+  {},
+  {
+    pagination: {
+      limit: 10,
+      page: 1
+    },
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      }
+    ]
+  }
+);
+```
+
+## Common Patterns
+
+### User Management System
+```typescript
+const usersWithDetails = await UserModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "profile",
+          localKey: "id",
+          foreignKey: "userId",
+          newField: "profile"
+        },
+        space: "profile"
+      },
+      {
+        fields: {
+          from: "post",
+          localKey: "id",
+          foreignKey: "authorId",
+          newField: "posts"
+        },
+        space: "post"
+      }
+    ]
+  }
+);
+```
+
+### E-commerce System
+```typescript
+const productsWithDetails = await ProductModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "category",
+          localKey: "categoryId",
+          foreignKey: "id",
+          newField: "category"
+        },
+        space: "category"
+      },
+      {
+        fields: {
+          from: "review",
+          localKey: "id",
+          foreignKey: "productId",
+          newField: "reviews"
+        },
+        space: "review"
+      }
+    ]
+  }
+);
+```
+
+## Real-World Use Case: Blog Management System
+
+Based on a practical blog system implementation:
+
+```typescript
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  authorId: string;
+  categoryId: string;
+  publishedAt: string;
+  status: "draft" | "published" | "archived";
+}
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+  description: string;
+}
+const getPostsWithDetails = async (userId?: string) => {
+  const posts = await PostModel.find(
+    userId ? { authorId: userId } : {},
+    {
+      populate: [
+        {
+          fields: {
+            from: "user",
+            localKey: "authorId",
+            foreignKey: "id",
+            newField: "author"
+          },
+          space: "user"
+        },
+        {
+          fields: {
+            from: "category",
+            localKey: "categoryId",
+            foreignKey: "id",
+            newField: "category"
+          },
+          space: "category"
+        }
+      ]
+    }
+  );
+
+  return posts.map((post: any) => ({
+    ...post,
+    authorName: post.author?.name,
+    authorEmail: post.author?.email,
+    categoryName: post.category?.name
+  }));
+};
+const calculatePostStats = (posts: any[]) => {
+  let publishedPosts = 0;
+  let draftPosts = 0;
+  let archivedPosts = 0;
+
+  posts.forEach((post: any) => {
+    switch (post.status) {
+      case "published":
+        publishedPosts++;
+        break;
+      case "draft":
+        draftPosts++;
+        break;
+      case "archived":
+        archivedPosts++;
+        break;
+    }
+  });
+
+  return {
+    total: posts.length,
+    published: publishedPosts,
+    draft: draftPosts,
+    archived: archivedPosts
+  };
+};
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **No Related Data Found**
+   - Check that the `localKey` and `foreignKey` values match
+   - Verify the source space exists and contains data
+   - **Verify the `from` and `space` values match your schema definitions**
+
+2. **Type Errors**
+   - Define proper TypeScript interfaces for populated data
+   - Use optional chaining when accessing populated fields
+
+3. **Performance Issues**
+   - Limit the number of populated fields
+   - Use pagination for large datasets
+   - Consider if population is necessary for your use case
+
+4. **Space Name Errors**
+   - Ensure `from` and `space` values match the `space` property in your schema definitions
+   - Check that the source record space exists in your project
+   - Verify spelling and case sensitivity of space names
+
+### Debugging Tips
+
+```typescript
+const posts = await PostModel.find(
+  { authorId: "user123" },
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      }
+    ]
+  }
+);
+
+console.log('Posts with population:', JSON.stringify(posts, null, 2));
+```
+
+## Best Practices Summary
+
+1. **Use Descriptive Field Names**: Choose clear names for `newField` that indicate the relationship
+2. **Handle Missing Data**: Always use optional chaining when accessing populated fields
+3. **Type Safety**: Define TypeScript interfaces for your populated data structures
+4. **Performance**: Only populate what you need and consider pagination for large datasets
+5. **Error Handling**: Gracefully handle cases where related data doesn't exist
+
+## Next Steps
+
+- [Population API Reference](/methods/populate)
+- [Schema Overview](/schema/overview)
+- [Find Method](/methods/find)
+
+## SDK
+### /sdk/index
+URL: https://docs.nobox.cloud/sdk/index
+
+# Building SDK for Nobox Core API
+
+## Introduction
+This documentation provides guidance on building an SDK (Software Development Kit) for the Nobox Core API. The API uses the OpenAPI 3.0.0 specification and provides various endpoints to interact with the Nobox platform.
+
+## SDK Components
+These SDK you will be developing would possibly have the following:
+
+1. API Request Methods: Methods for making requests to the various endpoints of the Nobox API.
+2. Authentication: Handling authentication with the API using the "bearer" token.
+3. Models: Define data models to represent the responses from the API.
+4. Error Handling: Handle API errors gracefully and provide meaningful error messages.
+5. Utility Functions: Additional utility functions to enhance SDK usability.
+
+## Building the SDK
+As far as we are concerned,a NOBOX SDK is simply a wrapper around the Nobox Core API endpoints. This document will outline and explain each endpoint and how it can be used. Most of these endpoints share some similarities too, making it easy to implement.
+
+## Nobox API Endpoints
+- Base URL: https://api.nobox.cloud
+- Authentication: Auth token can be generated on https://nobox.cloud by registering or logging into the dashboard
+- Allowed Methods in the SDK 
+    There are three types of methods that the API faciliates:
+    - Rowed Schema Methods:
+         This includes:
+            - find,
+            - findOne,
+            - search,
+            - insert,
+            - insertOne,
+            - updateOne,
+            - updateOneById,
+            - getTokenOwner
+    - KeyGroup Schema Methods:
+        This includes:
+            - setKeys
+            - getKeys
+   - In-built Function Methods:
+        This includes:
+            - login
+
+### Methods Implementation: 
+Here , we explain how each of the methods can be built using the Nobox Core API. As of right now, all calls to the Nobox API is RESTful and there are certain headers that needs to passed to all API Endpoint calls.
+
+Compulsory Headers:
+These headers need to be passed with your API calls. Apart from the `authorization` and the `structure` headers, the values of the other headers are expected to be used as is.
+  - 'Accept: application/json, text/plain, */*'
+  - 'authorization: Bearer [token]'
+  - 'auto-create-project: true'
+  - 'auto-create-record-space: true'
+  - 'clear-all-spaces: false'
+  - 'mutate: true'
+  - 'structure: [structure]'
+
+- `[token]` represents the token you generated on the Nobox Dashboard
+- `[structure]` represents the stringified structure of the record space you are making a call to
+
+### Find:
+-  Introduction
+The `FIND_ONE` endpoint in the Nobox Core API is used to retrieve a single record that matches the specified criteria. It allows you to search for a specific user based on their email and password. This documentation provides details on how to make a request to the `FIND_ONE` endpoint and explains the required headers and parameters.
+
+- Verb: GET
+- Url: `https://api.nobox.cloud/[project-slug]/[record-space-slug]`
+> Where `[project-slug]` and `[record-space-slug]` should be replaced with the slug of your project and slug of recordspace you are making a call on.
+- Url Params: `?age=22&gender=male`
+> the Url Params represent the kind of data being queried, in this case, you are looking for a record that has a matching data of `{age: 22, gender: "male"}`. FYI, this data will be reformated in the NOBOX API based on the TYPE supplied in the `structure` header for the related fields.
+- Find-specific Headers: These are headers that should are specific to the FIND API call
+  - `'options: {"paramRelationship":"And"}'` or `'options: {"paramRelationship":"And"}'`
+When you use `'options: {"paramRelationship":"And"}'`, it means both conditions (age and gender) must be true for a user to be included in the result. In other words, as the example stated previously, the user must be 22 years old and male.
+When you use ``,  it means both conditions (age and gender) must be true for a user to be included in the result. In other words, as the example stated previously, the user must be 22 years old and male.
+
+Here is an example of a CURL find on the Nobox Core API
+```
+curl --request GET \
+  --url 'https://api.nobox.cloud/kitchenApp/users?age=22&gender=male' \
+  --header 'Accept: application/json, text/plain, */*' \
+  --header 'Origin: http://localhost:8081' \
+  --header 'Referer: http://localhost:8081/' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNjI3MjM5MzYzfQ.3kxhzvCD6GInXJYzCEZtVpBHbTn10hXyHM2Wt86URp0' \
+  --header 'auto-create-project: true' \
+  --header 'auto-create-record-space: true' \
+  --header 'clear-all-spaces: false' \
+  --header 'mutate: true' \
+  --header 'options: {"paramRelationship":"And"}' \
+  --header 'structure: {"name":"Users","description":"List of Users Using my Kitchen App","projectSlug":"kitchenApp","slug":"users","recordStructure":[{"required":true,"unique":false,"description":"Age of the user","comment":"","hashed":false,"type":"NUMBER","slug":"age","name":"age"},{"required":true,"unique":false,"description":"Name of the user","comment":"","hashed":false,"type":"TEXT","slug":"name","name":"name"},{"required":true,"unique":false,"description":"Password of the user","comment":"","hashed":true,"type":"TEXT","slug":"password","name":"password"},{"required":false,"unique":false,"description":"Gender of the user","comment":"","hashed":false,"type":"TEXT","slug":"gender","name":"gender","defaultValue":"undisclosed"}]}' \
+  ```
+### FIND_ONE
+
+#### Introduction
+The `FIND_ONE` endpoint in the Nobox Core API is used to retrieve a single record that matches the specified criteria. It allows you to search for a specific user based on their email and password. This documentation provides details on how to make a request to the `FIND_ONE` endpoint and explains the required headers and parameters.
+- Verb: GET
+- Url: `https://api.nobox.cloud/[project-slug]/[record-space-slug]/_single_`
+> Where `[project-slug]` and `[record-space-slug]` should be replaced with the slug of your project and slug of recordspace you are making a call on.
+- Url Params: `?age=22&gender=male`
+> the Url Params represent the kind of data being queried, in this case, you are looking for a record that has a matching data of `{age: 22, gender: "male"}`. FYI, this data will be reformated in the NOBOX API based on the TYPE supplied in the `structure` header for the related fields.
+- Find-specific Headers: These are headers that should are specific to the FIND API call
+  - `'options: {"paramRelationship":"And"}'` or `'options: {"paramRelationship":"And"}'`
+When you use `'options: {"paramRelationship":"And"}'`, it means both conditions (age and gender) must be true for a user to be included in the result. In other words, as the example stated previously, the user must be 22 years old and male.
+When you use ``,  it means both conditions (age and gender) must be true for a user to be included in the result. In other words, as the example stated previously, the user must be 22 years old and male.
+
+## CURL Command Example
+Here's an example `curl` command for making a `FIND_ONE` request to the Nobox Core API for the "User" record space:
+
+```bash
+curl --request GET \
+  --url 'https://api.nobox.cloud/kitchenApp/users/_single_?age=22&gender=male' \
+  --header 'Accept: application/json, text/plain, */*' \
+  --header 'Origin: http://localhost:8081' \
+  --header 'Referer: http://localhost:8081/' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNjI3MjM5MzYzfQ.3kxhzvCD6GInXJYzCEZtVpBHbTn10hXyHM2Wt86URp0' \
+  --header 'auto-create-project: true' \
+  --header 'auto-create-record-space: true' \
+  --header 'clear-all-spaces: false' \
+  --header 'mutate: true' \
+  --header 'options: {"paramRelationship":"And"}' \
+  --header 'structure: {"name":"Users","description":"List of Users Using my Kitchen App","projectSlug":"kitchenApp","slug":"users","recordStructure":[{"required":true,"unique":false,"description":"Age of the user","comment":"","hashed":false,"type":"NUMBER","slug":"age","name":"age"},{"required":true,"unique":false,"description":"Name of the user","comment":"","hashed":false,"type":"TEXT","slug":"name","name":"name"},{"required":true,"unique":false,"description":"Password of the user","comment":"","hashed":true,"type":"TEXT","slug":"password","name":"password"},{"required":false,"unique":false,"description":"Gender of the user","comment":"","hashed":false,"type":"TEXT","slug":"gender","name":"gender","defaultValue":"undisclosed"}]}' \
+  ```
+
+### /sdk/how-to-create-header-structure
+URL: https://docs.nobox.cloud/sdk/how-to-create-header-structure
+DESCRIPTION: string; // description of record space
+
+# Creating the Structure Header Field.
+When interacting with the Nobox Core API , it is required to send a Header field called `structure` alongside every request made. Clearly, this field is stringified. This page explains how to create the value of this field.
+
+First, lets talk about the model of this structure.
+
+#### Pseudo Code of how the Model looks like
+```ts
+interface Structure {
+  name: string; // name of record space
+  description: string; // description of record space
+  projectSlug: string; // project slug 
+  slug: string; // record space slug
+  recordStructure: RecordFieldStructure[]; // an array of the meta data of each record space field
+  initialData?: Record<string, string | number | any[]>[]; // an optional array of records that follows the validation criteria of the meta data of the record space field
+}
+
+interface RecordFieldStructure {
+  required: boolean;
+  unique: boolean;
+  description: string;
+  comment: string;
+  hashed: boolean;
+  type: string;
+  slug: string;
+  name: string;
+  defaultValue?: any;
+}
+```
+
+Based on the Pseudo Code above, lets create our structure before we stringify it and make it ready for transport.
+
+We will be creating the structure for a record space called Users with four fields: `age`, `name`, `password` and `gender` and the project would be a kitchen app.
+
+Let's get to it.
+
+Here is how my structure will look like without the recordStructure field.
+
+```js
+{
+    name:  "Users",
+    description: "List of Users Using my Kitchen App",
+    projectSlug: "kitchenApp", // FYI, this value is the same for all structures you create
+    slug: "users",
+}
+```
+Nice, but we are not done yet. Let's add the recordStructure, remember I mentioned that this Record Space has four fields,
+`age`, `name`, `password` and `gender`, this is where we explain their structure using the `RecordFieldStructure` interface.
+
+```js
+{
+  name: "Users",
+  description: "List of Users Using my Kitchen App",
+  projectSlug: "kitchenApp",// FYI, this value is the same for all structures you create
+  slug: "users",
+  recordStructure: [
+    {
+      required: true,
+      unique: false,
+      description: "Age of the user",
+      comment: "",
+      hashed: false,
+      type: "NUMBER",
+      slug: "age",
+      name: "age",
+    },
+    {
+      required: true,
+      unique: false,
+      description: "Name of the user",
+      comment: "",
+      hashed: false,
+      type: "TEXT",
+      slug: "name",
+      name: "name",
+    },
+    {
+      required: true,
+      unique: false,
+      description: "Password of the user",
+      comment: "",
+      hashed: true,
+      type: "TEXT",
+      slug: "password",
+      name: "name",
+    },
+    {
+      required: false,
+      unique: false,
+      description: "Gender of the user",
+      comment: "",
+      hashed: false,
+      type: "TEXT",
+      slug: "gender",
+      name: "gender",
+      defaultValue: "undisclosed"
+    },
+  ],
+}
+```
+
+As you can see, each object of the array gives an idea of how each of the fields is meant to operate. Here is a further breakdown:
+- required (boolean): Indicates whether the field is required or optional.
+- unique (boolean): Indicates if this field can have same values for different records, this will usually be `true` for a username field
+- description (string): this field explains what the field is all about, you can leave it as an empty string
+- comment (string): this field provides additional information about the field, more like a developer note. you can leave it as an empty string
+- hashed (boolean): this field decides if the value of this field should be hashed or not. If this is true, the value of this field will be hashed on nobox database , and it won't be returned in queries but can still find a record using the value of this field. This is usually `true` for a password field.
+- type (string): This can either be "TEXT" ,  "NUMBER" or "ARRAY". It simply provides validation for the type of value this field is designed.
+- name (string): the name of the field, this name will be used to determine the name of the field key in the object that gets returned for this record space and the object that gets inserted in this record space. 
+- slug (string): This is a unique identifier for this field. It should not be the same with any other field. Preferably, a lower case alphanumeric character 
+- defaultValue (string): This value is what gets stored as the value of a field when it is set when inserting records.
+
+## Interface Definition Guidelines
+
+When creating TypeScript interfaces for your record structures, follow these best practices:
+
+### ❌ Don't Include These Fields
+- `id` - Automatically generated by Nobox
+- `createdAt` - Automatically set by Nobox
+- `updatedAt` - Automatically updated by Nobox
+
+### ✅ Correct Interface Definition
+```ts
+import { ReturnObject } from "nobox-client";
+
+interface User {
+  name: string;
+  age: number;
+  email: string;
+}
+```
+
+### Using ReturnObject for Type Safety
+```ts
+const user: ReturnObject<User> = await getUser(id);
+```
+
+## Functions
+### Nobox Login - API Reference
+URL: https://docs.nobox.cloud/functions/login
+DESCRIPTION: Explanation of the Nobox inbuilt function "Login"
+
+# Nobox Login
+
+The Nobox inbuilt function "Login" allows users to authenticate and obtain an access token for accessing protected resources within the application. This function is commonly used for user authentication and session management.
+
+## Function Signature
+
+```ts
+login({ email, password }: { email: string, password: string }): Promise<{ token: string, user: UserType } | null>
+```
+
+## Parameters
+- email (string): The email of the user for authentication.
+- password (string): The password of the user for authentication.
+
+## Return Value
+A promise that resolves to an object containing the access token and the user information if the authentication is successful. If the authentication fails, the promise resolves to null.
+
+##Example: Basic Usage
+
+```ts
+import {  getFunctions } from "./nobox";
+export const Nobox = getFunctions(config);
+const email = 'user@example.com';
+const password = 'password123';
+const response = await Nobox.login({
+      body: {
+        email,
+        password
+      },
+      space: UserStructure,
+});
+
+if (result) {
+  const { token, user } = result;
+  console.log('Logged in successfully');
+  console.log('Access Token:', token);
+  console.log('User:', user);
+} else {
+  console.log('Login failed');
+}
+```
+
+In the above example, we define the login credentials with the user's email and password. Then, we call the login function with the provided credentials and await the result. If the authentication is successful, we log the access token and user information to the console. Otherwise, we log a failure message.
+
+## Examples
+### Example Usage
+URL: https://docs.nobox.cloud/nobox-examples
+DESCRIPTION: How to use nobox via examples
+
+# {% $markdoc.frontmatter.title %}
+
+Since you have created the needed structure in the installation and integration process. Below are examples of how nobox can be used.
+
+### Example 1: Insert Data
+
+  ```ts
+  import UserModel from "../record-structures/user.ts";
+  const returnedData = await UserModel.insertOne({
+    email: "test@gmail.com",
+    password: "123456",
+    firstName: "akintunde",
+    age: 24
+  });
+  ```
+
+### Example 2: Insert Data in React
+
+When using React, the code will resemble the example below. Pay attention to how the UserModel is utilized in the code snippet.
+
+```ts
+import React, { useState } from 'react';
+import UserModel from '../record-structures/user.ts';
+
+function UserComponent() {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    firstName: '',
+    age: '',
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevState: any) => ({
+      ...prevState,
+      [name]: name === "age" ? Number(value) : value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const returnedData = await UserModel.insertOne(formData); // Nobox was used here
+    console.log('User created:', returnedData);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Email:
+          <input
+            type="text"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+          />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+          />
+        </label>
+        <br />
+        <label>
+          First Name:
+          <input
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleInputChange}
+          />
+        </label>
+        <br />
+        <label>
+          Age:
+          <input
+            type="number"
+            name="age"
+            value={formData.age}
+            onChange={handleInputChange}
+          />
+        </label>
+        <br />
+        <button type="submit">Add User</button>
+      </form>
+    </div>
+  );
+}
+```
+
+### Example 3: Performing CRUD operations
+ 
+ ```ts
+const insertedData = await UserModel.insertOne(data);
+console({ insertedData });
+const foundData = await UserModel.findOne({id: insertedData.id});
+console.log({ foundData})
+const updatedData = await UserModel.updateOneById(id, { firstName: "akin2"})
+console.log({ updatedData})
+const allData = await UserModel.find({email: "test@gmail.com"})
+console.log(allData);
+```
+## Next steps
+
+- [Schema Overview](//schema/overview)
+

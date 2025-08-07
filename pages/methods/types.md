@@ -39,6 +39,8 @@ There are two types of methods in Nobox NPM Client.
 - UpdatedOneById
 - getTokenOwner
 
+**Note**: The `find` and `findOne` methods support population, allowing you to fetch related data from other record spaces in a single query. See [Population](/methods/populate) for detailed information.
+
 {% /item %}
 
 {% item %}
@@ -64,4 +66,33 @@ There are two types of methods in Nobox NPM Client.
 
 {% /item %}
 {% /side-by-side %}
+
+## Advanced Features
+
+### Population Support
+
+Rowed Schema methods (`find` and `findOne`) support population, which allows you to fetch related data from other record spaces in a single query. This is similar to SQL JOINs but with the flexibility of NoSQL.
+
+**Example:**
+```typescript
+// Find posts with author information
+const postsWithAuthors = await PostModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      }
+    ]
+  }
+);
+```
+
+For comprehensive information about population, see [Population](/methods/populate).
 

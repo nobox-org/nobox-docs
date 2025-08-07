@@ -62,7 +62,34 @@ export const UserStructure: Space<User> = {
 export const UserModel = createRowedSchema<User>(UserStructure);
 ```
 
-In this example, we define a User record with fields such as "id", "name", "age", and "email". Each field has a specified type and can be marked as required or optional based on your needs. Hold on! We still explain how to define the types and fields 
+In this example, we define a User record with fields such as "id", "name", "age", and "email". Each field has a specified type and can be marked as required or optional based on your needs.
+
+### Advanced Features
+
+Rowed Schema also supports population, allowing you to fetch related data from other record spaces in a single query. This enables you to create rich, relational-like data structures without the complexity of traditional database joins.
+
+**Example:**
+```typescript
+// Fetch posts with author information
+const postsWithAuthors = await PostModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      }
+    ]
+  }
+);
+```
+
+For detailed information about population, see [Population](/methods/populate). 
 
 
 ### Key-Value Schema
@@ -115,3 +142,4 @@ These schema types provide flexibility in representing structured data in Nobox.
 ## Next steps
 
 - [Schema -  API Reference](/schema/api-reference)
+- [Population Guide](/schema/population-guide)

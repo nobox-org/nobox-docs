@@ -18,6 +18,7 @@ const items = [
       { href: '/schema/overview', children: 'Overview' },
       { href: '/schema/api-reference', children: 'API Reference' },
       { href: '/schema/example-usage', children: 'Example Usage' },
+      { href: '/schema/population-guide', children: 'Population Guide' },
       { href: '/schema/concepts', children: 'Concepts' },
     ]
   },
@@ -27,6 +28,7 @@ const items = [
       { href: '/methods/types', children: 'Types' },
       { href: '/methods/find', children: 'Find' },
       { href: '/methods/find-one', children: 'FindOne' },
+      { href: '/methods/populate', children: 'Population' },
       { href: '/methods/insert', children: 'Insert' },
       { href: '/methods/insert-one', children: 'InsertOne' },
       { href: '/methods/update-one', children: 'UpdateOne' },
@@ -34,6 +36,12 @@ const items = [
       { href: '/methods/get-token-owner', children: 'Get Token Owner' },
       { href: '/methods/set-keys', children: 'SetKeys' },
       { href: '/methods/get-keys', children: 'Getkeys' },
+    ]
+  },
+  {
+    title: 'Upload',
+    links: [
+      { href: '/methods/upload', children: 'File Upload' },
     ]
   },
   {

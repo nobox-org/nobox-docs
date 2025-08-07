@@ -9,7 +9,11 @@
     "lint": "next lint",
     "deploy": "vercel",
     "spec": "spec-md spec/index.md > public/spec.html",
-    "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
+    "index-content": "node algolia-index.js",
+    "update-search": "npm run index-content && echo 'Search index updated successfully'",
+    "generate-llms": "node scripts/generate-llms-files.js",
+    "build-with-llms": "npm run build && npm run generate-llms"
   },
   "dependencies": {
     "@docsearch/react": "^3.1.0",

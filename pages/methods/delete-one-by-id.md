@@ -25,3 +25,6 @@ const deletedDocument = await UserModel.deleteOneById(id);
 // Output the updated document
 console.log(deletedDocument);
 ```
+
+## Next steps
+- [Search](/methods/search)

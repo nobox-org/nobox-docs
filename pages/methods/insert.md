@@ -35,3 +35,4 @@ console.log(insertedDocuments);
 ## Next steps
 
 - [InsertOne](/methods/insert-one)
+- [Search](/methods/search)

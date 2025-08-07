@@ -76,6 +76,63 @@ console.log("Updated User:", updatedUser);
 ```
 With Rowed Schema, data is structured in rows, and we can perform operations like finding all users, inserting new users, and updating existing users by their ID.
 
+### Advanced Rowed Schema with Population
+
+Rowed Schema also supports population to fetch related data from other record spaces:
+
+```ts
+// Define related schemas
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  authorId: string; // Foreign key to User
+  categoryId: string; // Foreign key to Category
+}
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+  description: string;
+}
+
+// Find posts with author and category using population
+const postsWithDetails = await PostModel.find(
+  {},
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      },
+      {
+        fields: {
+          from: "category",
+          localKey: "categoryId",
+          foreignKey: "id",
+          newField: "category"
+        },
+        space: "category"
+      }
+    ]
+  }
+);
+
+// Result includes populated author and category for each post
+console.log(postsWithDetails);
+```
+
 ### Key-Value Schema Example
 Key-Value Schema represents data as a collection of key-value pairs, similar to a dictionary or JSON object structure. Let's create a simple "Settings" record using Key-Value Schema.
 
@@ -133,6 +190,48 @@ console.log("All Settings:", allSettings);
 
 With Key-Value Schema, we can set key-value pairs for settings and retrieve all key-value pairs associated with the settings.
 
+### Important Note: Interface Definition Best Practices
+
+When defining interfaces for your record structures, **do not include** `id`, `createdAt`, and `updatedAt` fields in your interface definition. These fields are automatically added by Nobox and are always returned with every record.
+
+**❌ Incorrect:**
+```ts
+interface User {
+  id: string;           // Don't include these
+  name: string;
+  age: number;
+  email: string;
+  createdAt: string;    // Don't include these
+  updatedAt: string;    // Don't include these
+}
+```
+
+**✅ Correct:**
+```ts
+import { ReturnObject } from "nobox-client";
+
+interface User {
+  name: string;
+  age: number;
+  email: string;
+  // id, createdAt, updatedAt are automatically added
+}
+
+// For return types, use ReturnObject<T>
+const user: ReturnObject<User> = await UserModel.findOne({ email: "john@example.com" });
+```
+
+The `ReturnObject<T>` type automatically extends your interface with the required fields:
+```ts
+type ReturnObject<T> = T & {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+```
+
 ## Next steps
 
-- [Creating Schemas](/schema/creation-guide)
+- [Interface Guidelines](/schema/interface-guidelines)
+- [Population Guide](/schema/population-guide)
+- [Population API Reference](/methods/populate)

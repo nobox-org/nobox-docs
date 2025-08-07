@@ -39,5 +39,6 @@ console.log(updatedDocument);
 
 ## Next steps
 - [GetTokenOwner](/methods/get-token-owner)
+- [Search](/methods/search)
 
 

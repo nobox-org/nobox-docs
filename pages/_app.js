@@ -114,7 +114,7 @@ export default function MyApp(props) {
         />
         <link
           rel="preconnect"
-          href={`https://${process.env.NEXT_PUBLIC_ALGOLIA_APP_ID}-dsn.algolia.net`}
+          href="https://SPXODZLI2X-dsn.algolia.net"
           crossOrigin=""
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -133,6 +133,72 @@ export default function MyApp(props) {
         <meta
           name="twitter:image"
           content="https://docs.nobox.cloud/images/share.png"
+        />
+
+        {/* Enhanced meta tags for LLM compatibility */}
+        <meta name="description" content={description} />
+        <meta name="keywords" content="nobox, backend as a service, baas, api, documentation, crud, authentication, database" />
+        <meta name="author" content="Nobox Team" />
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph tags for better LLM understanding */}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Nobox Documentation" />
+
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+
+        {/* Structured data for LLM understanding */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "TechArticle",
+              "headline": title,
+              "description": description,
+              "author": {
+                "@type": "Organization",
+                "name": "Nobox"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Nobox",
+                "url": "https://nobox.com"
+              },
+              "mainEntity": {
+                "@type": "SoftwareApplication",
+                "name": "Nobox",
+                "description": "Backend as a Service solution",
+                "applicationCategory": "DeveloperApplication",
+                "operatingSystem": "Web"
+              },
+              "about": [
+                {
+                  "@type": "Thing",
+                  "name": "Backend as a Service"
+                },
+                {
+                  "@type": "Thing",
+                  "name": "API Documentation"
+                },
+                {
+                  "@type": "Thing",
+                  "name": "CRUD Operations"
+                }
+              ]
+            })
+          }}
+        />
+
+        {/* Algolia DNS prefetch for better search performance */}
+        <link
+          rel="dns-prefetch"
+          href="https://SPXODZLI2X-dsn.algolia.net"
         />
       </Head>
       <a href="#skip-nav" className="skip-nav">

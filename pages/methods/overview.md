@@ -114,3 +114,5 @@ These schema types provide flexibility in representing structured data in Nobox.
 ## Next steps
 
 - [Schema -  API Reference](/schema/api-reference)
+- [File Upload](/methods/upload) - Learn how to upload files using Nobox
+- [Search](/methods/search) - Learn how to search for records using text queries

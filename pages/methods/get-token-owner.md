@@ -35,4 +35,5 @@ In the above example, we define the token for which we want to retrieve the owne
 
 ## Next steps
 
-- [SetKeys](/model/set-keys)
+- [SetKeys](/methods/set-keys)
+- [Search](/methods/search)

@@ -7,9 +7,52 @@ import { NoboxLogo } from './NoboxLogo';
 function Search() {
   return (
     <DocSearch
-      appId={process.env.NEXT_PUBLIC_ALGOLIA_APP_ID}
-      apiKey={process.env.NEXT_PUBLIC_ALGOLIA_API_KEY}
-      indexName="markdoc"
+      appId="SPXODZLI2X"
+      apiKey="1032ce2a669bad342d04e966b5c7c476"
+      indexName="nobox-docs"
+      placeholder="Search Nobox documentation..."
+      translations={{
+        button: {
+          buttonText: "Search",
+          buttonAriaLabel: "Search documentation"
+        },
+        modal: {
+          searchBox: {
+            resetButtonTitle: "Clear the query",
+            resetButtonAriaLabel: "Clear the query",
+            cancelButtonText: "Cancel",
+            cancelButtonAriaLabel: "Cancel"
+          },
+          startScreen: {
+            recentSearchesTitle: "Recent",
+            noRecentSearchesText: "No recent searches",
+            saveRecentSearchButtonTitle: "Save this search",
+            removeRecentSearchButtonTitle: "Remove this search from history",
+            favoriteSearchesTitle: "Favorite",
+            removeFavoriteSearchButtonTitle: "Remove this search from favorites"
+          },
+          errorScreen: {
+            titleText: "Unable to fetch results",
+            helpText: "You might want to check your network connection."
+          },
+          footer: {
+            selectText: "to select",
+            selectKeyAriaLabel: "Enter key",
+            navigateText: "to navigate",
+            navigateUpKeyAriaLabel: "Arrow up",
+            navigateDownKeyAriaLabel: "Arrow down",
+            closeText: "to close",
+            closeKeyAriaLabel: "Escape key",
+            searchByText: "Search by"
+          },
+          noResultsScreen: {
+            noResultsText: "No results for",
+            suggestedQueryText: "Try searching for",
+            reportMissingResultsText: "Believe this query should return results?",
+            reportMissingResultsLinkText: "Let us know."
+          }
+        }
+      }}
     />
   );
 }

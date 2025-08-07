@@ -41,5 +41,6 @@ console.log(updatedDocument);
 
 ## Next steps
 - [updateOneById](/methods/update-one-by-id)
+- [Search](/methods/search)
 
 

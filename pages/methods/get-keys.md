@@ -24,3 +24,8 @@ console.log(keys);
 ```
 
 The model.getKeys() method retrieves all the key values stored in a key-group model. It returns an array of objects representing the key values. Each object in the array has the same structure as the model's schema, including additional fields such as id, createdAt, and updatedAt. Use this method to fetch the key values and utilize them in your application as needed.
+
+## Next steps
+
+- [SetKeys](/methods/set-keys)
+- [Search](/methods/search)

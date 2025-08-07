@@ -1,0 +1,48 @@
+# Nobox Documentation for LLMs
+# This file helps AI models discover and understand Nobox documentation
+# Last updated: 2025-08-07
+
+## Getting Started
+https://docs.nobox.cloud/
+https://docs.nobox.cloud/what-is-nobox
+https://docs.nobox.cloud/install-nobox
+https://docs.nobox.cloud/integrate-nobox
+
+## API Reference
+https://docs.nobox.cloud/api-reference
+
+## Methods
+https://docs.nobox.cloud/methods/overview
+https://docs.nobox.cloud/methods/types
+https://docs.nobox.cloud/methods/find
+https://docs.nobox.cloud/methods/find-one
+https://docs.nobox.cloud/methods/search
+https://docs.nobox.cloud/methods/insert
+https://docs.nobox.cloud/methods/insert-one
+https://docs.nobox.cloud/methods/update-one
+https://docs.nobox.cloud/methods/update-one-by-id
+https://docs.nobox.cloud/methods/delete-one-by-id
+https://docs.nobox.cloud/methods/populate
+https://docs.nobox.cloud/methods/upload
+https://docs.nobox.cloud/methods/get-keys
+https://docs.nobox.cloud/methods/set-keys
+https://docs.nobox.cloud/methods/get-token-owner
+
+## Schema
+https://docs.nobox.cloud/schema/overview
+https://docs.nobox.cloud/schema/concepts
+https://docs.nobox.cloud/schema/example-usage
+https://docs.nobox.cloud/schema/interface-guidelines
+https://docs.nobox.cloud/schema/api-reference
+https://docs.nobox.cloud/schema/population-guide
+
+## SDK
+https://docs.nobox.cloud/sdk/index
+https://docs.nobox.cloud/sdk/how-to-create-header-structure
+
+## Functions
+https://docs.nobox.cloud/functions/login
+
+## Examples
+https://docs.nobox.cloud/nobox-examples
+

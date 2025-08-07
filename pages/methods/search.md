@@ -13,6 +13,8 @@ The `model.search()` method in Nobox allows you to search for documents in a mod
   - `searchText` (string): The text to search for within the specified fields.
 
 - `options`: An object that provides additional configuration for the query results. It includes the following properties:
+
+> **Note**: The `search()` method does not support population. If you need to fetch related data, use the `find()` method instead.
   - `pagination` (optional): An object that enables pagination of the query results. It includes the following properties:
 
     - `limit` (required): The maximum number of records to be returned per page. For example, setting `limit` to 10 will return a maximum of 10 documents per page.

@@ -35,4 +35,5 @@ console.log(updatedKeys);
 
 ## Next steps
 
-- [SetKeys](/model/get-keys)
+- [GetKeys](/methods/get-keys)
+- [Search](/methods/search)

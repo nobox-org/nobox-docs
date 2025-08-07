@@ -7,6 +7,8 @@ description: Explanation of how Nobox Model Methods "Find" works
 # `model.find(query, options)`
 The `model.find()` method in Nobox allows you to retrieve documents from a model based on a specified query and customize the returned results using options.
 
+> **💡 Tip**: This method supports population to fetch related data from other record spaces. See the [Population Example](#example-with-population) below or visit [Population](/methods/populate) for detailed information.
+
 ## Parameters 
 
 - `query`: An object that represents the search criteria. Each key in the object corresponds to a field in the model, and its value is used to match documents with matching field values. For example, `{ age: 10, gender: 'female' }` will return documents where the `age` field is 10 and the `gender` field is "female".
@@ -26,6 +28,8 @@ The `model.find()` method in Nobox allows you to retrieve documents from a model
     - `by` (required): The field to use for sorting. It should be one of the keys of the `ReturnObject<T>` type. For example, setting `by` to `'createdAt'` will sort the documents based on their creation date.
 
     - `order` (optional): The sort order for the results. It can be `'asc'` (ascending) or `'desc'` (descending). If not specified, the default is `'asc'`. For example, setting `order` to `'desc'` will sort the documents in descending order.
+
+  - `populate` (optional): An array of population configurations to fetch related data from other record spaces. See [Population](/methods/populate) for detailed information.
 
 With the `model.find()` method, you can efficiently retrieve documents that match specific criteria and control the pagination and sorting of the returned results. Adjust the query and options based on your model's fields and desired behavior.
 
@@ -64,6 +68,32 @@ const results = await UserModel.find(params, options);
 console.log(results);
 ```
 
+## Example: With Population
+
+```ts
+// Find posts with author information
+const postsWithAuthors = await PostModel.find(
+  { authorId: "user123" },
+  {
+    populate: [
+      {
+        fields: {
+          from: "user",
+          localKey: "authorId",
+          foreignKey: "id",
+          newField: "author"
+        },
+        space: "user"
+      }
+    ]
+  }
+);
+
+// Result includes populated author data
+console.log(postsWithAuthors);
+```
+
 ## Next steps
 
 - [FindOne](/methods/find-one)
+- [Search](/methods/search)
