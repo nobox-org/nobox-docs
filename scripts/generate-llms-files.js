@@ -118,6 +118,16 @@ function extractMarkdownContent(filePath) {
 /**
  * Generate llms-full.txt file with full content
  */
+// Resolve a docs page path from a site URL, supporting .md and .mdoc
+function resolvePagePathFromUrl(url) {
+    const relative = (url === '/' ? 'index' : url.replace(/^\//, ''));
+    const candidates = [
+        path.join(PAGES_DIR, `${relative}.md`),
+        path.join(PAGES_DIR, `${relative}.mdoc`),
+    ];
+    return candidates.find(fs.existsSync);
+}
+
 function generateLlmsFullTxt() {
     let content = `# Nobox Documentation Full Content for LLMs
 # This file contains the full text content of Nobox documentation for AI models
@@ -129,9 +139,9 @@ function generateLlmsFullTxt() {
         content += `## ${section}\n\n`;
 
         for (const url of urls) {
-            const filePath = path.join(PAGES_DIR, url === '/' ? 'index.md' : `${url}.md`);
+            const filePath = resolvePagePathFromUrl(url);
 
-            if (fs.existsSync(filePath)) {
+            if (filePath && fs.existsSync(filePath)) {
                 const { title, description, content: fileContent } = extractMarkdownContent(filePath);
 
                 content += `### ${title || url}\n`;
@@ -143,7 +153,7 @@ function generateLlmsFullTxt() {
                 content += fileContent;
                 content += '\n\n';
             } else {
-                console.warn(`Warning: File not found for ${url}: ${filePath}`);
+                console.warn(`Warning: File not found for ${url}`);
             }
         }
     }
@@ -164,9 +174,9 @@ function generateLlmsFullMinifiedTxt() {
         content += `## ${section}\n`;
 
         for (const url of urls) {
-            const filePath = path.join(PAGES_DIR, url === '/' ? 'index.md' : `${url}.md`);
+            const filePath = resolvePagePathFromUrl(url);
 
-            if (fs.existsSync(filePath)) {
+            if (filePath && fs.existsSync(filePath)) {
                 const { title, description, content: fileContent } = extractMarkdownContent(filePath);
 
                 content += `### ${title || url}\n`;
@@ -190,7 +200,7 @@ function generateLlmsFullMinifiedTxt() {
                 content += minifiedContent;
                 content += '\n\n';
             } else {
-                console.warn(`Warning: File not found for ${url}: ${filePath}`);
+                console.warn(`Warning: File not found for ${url}`);
             }
         }
     }

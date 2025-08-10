@@ -71,7 +71,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   baseURL: 'https://api.nobox.cloud/_f_/v1',
-  apiKey: 'your-nobox-user-token'
+  apiKey: 'your-nobox-user-token' // Get this token from the Nobox Dashboard (`dashboard.nobox.cloud`)
 });
 
 const response = await client.chat.completions.create({
@@ -94,7 +94,7 @@ from openai import OpenAI
 
 client = OpenAI(
     base_url="https://api.nobox.cloud/_f_/v1",
-    api_key="your-nobox-user-token"
+    api_key="your-nobox-user-token"  # Get this token from the Nobox Dashboard (`dashboard.nobox.cloud`)
 )
 
 response = client.chat.completions.create(
@@ -116,7 +116,7 @@ print(response.choices[0].message.content)
 const response = await fetch('https://api.nobox.cloud/_f_/v1/chat/completions', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer your-nobox-user-token',
+    'Authorization': 'Bearer your-nobox-user-token', // Get this token from the Nobox Dashboard (`dashboard.nobox.cloud`)
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
@@ -139,7 +139,7 @@ console.log(data.choices[0].message.content);
 const response = await fetch('https://api.nobox.cloud/_f_/v1/chat/completions', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer your-nobox-user-token',
+    'Authorization': 'Bearer your-nobox-user-token', // Get this token from the Nobox Dashboard (`dashboard.nobox.cloud`)
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
@@ -198,7 +198,7 @@ Get the complete list of models available to your account:
 const response = await fetch('https://api.nobox.cloud/_f_/models', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer your-nobox-user-token',
+    'Authorization': 'Bearer your-nobox-user-token', // Get this token from the Nobox Dashboard (`dashboard.nobox.cloud`)
     'Content-Type': 'application/json'
   }
 });

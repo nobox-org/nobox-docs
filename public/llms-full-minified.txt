@@ -2,287 +2,92 @@
 # Last updated: 2025-08-10
 
 ## Getting Started
-### Nobox - AI-Powered Backend as a Service
+### "Nobox - AI-Powered Backend as a Service"
 URL: https://docs.nobox.cloud/
-DESCRIPTION: The fastest way to integrate AI into your applications. Access 300+ AI models through a single API with built-in usage tracking and wallet billing.
+DESCRIPTION: "The fastest way to integrate AI into your applications. Access 300+ AI models through a single API with
 
-<div class="hero-section">
-  <div class="hero-content">
-    <div class="hero-badge">
-      🚀 AI-Powered Backend as a Service
-    </div>
-    <h1 class="hero-title">
-      The Complete AI Backend
-      <span class="hero-highlight">for Modern Apps</span>
-    </h1>
-    <p class="hero-description">
-      <strong>Nobox</strong> is the fastest way to integrate AI into your applications. Access <strong>300+ AI models</strong> from providers like OpenAI, Anthropic, Google, and Meta through a single, OpenAI-compatible API.
-    </p>
-    <p class="hero-subtitle">
-      Unlike traditional AI API services, Nobox combines AI capabilities with a complete backend solution - giving you database operations, authentication, file uploads, and AI all in one platform.
-    </p>
-    <div class="hero-actions">
-      <a href="#quick-start" class="btn-primary">Get Started</a>
-      <a href="/allowed-models" class="btn-secondary">View 300+ Models</a>
-    </div>
-  </div>
-</div>
+# Nobox - AI-Powered Backend as a Service
 
-<style jsx>
-{`
-  .hero-section {
-    background: linear-gradient(135deg, var(--primary-50) 0%, var(--blue-50) 100%);
-    border-radius: var(--border-radius-lg);
-    margin: var(--spacing-lg) 0 var(--spacing-2xl);
-    padding: var(--spacing-3xl) var(--spacing-2xl);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23f3f4f6" fill-opacity="0.3"><circle cx="30" cy="30" r="1.5"/></g></svg>') repeat;
-    opacity: 0.4;
-  }
-  
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .hero-badge {
-    display: inline-block;
-    background: var(--primary-100);
-    color: var(--primary-800);
-    padding: var(--spacing-sm) var(--spacing-lg);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--spacing-lg);
-    border: 1px solid var(--primary-200);
-  }
-  
-  .hero-title {
-    font-size: var(--font-size-6xl);
-    font-weight: var(--font-weight-extrabold);
-    line-height: var(--line-height-tight);
-    margin-bottom: var(--spacing-lg);
-    color: var(--text-primary);
-  }
-  
-  .hero-highlight {
-    background: linear-gradient(135deg, var(--primary-400), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  .hero-description {
-    font-size: var(--font-size-xl);
-    line-height: var(--line-height-relaxed);
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-sm);
-  }
-  
-  .hero-subtitle {
-    font-size: var(--font-size-lg);
-    line-height: var(--line-height-relaxed);
-    color: var(--text-tertiary);
-    margin-bottom: var(--spacing-xl);
-  }
-  
-  .hero-actions {
-    display: flex;
-    gap: var(--spacing-lg);
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .btn-primary, .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    padding: var(--spacing-md) var(--spacing-xl);
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-base);
-    transition: all 200ms ease;
-    border: 2px solid transparent;
-  }
-  
-  .btn-primary {
-    background: var(--accent);
-    color: var(--text-inverse);
-    box-shadow: var(--shadow);
-  }
-  
-  .btn-primary:hover {
-    background: var(--blue-700);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-lg);
-    text-decoration: none;
-  }
-  
-  .btn-secondary {
-    background: var(--background);
-    color: var(--text-primary);
-    border-color: var(--border-strong);
-    box-shadow: var(--shadow-sm);
-  }
-  
-  .btn-secondary:hover {
-    background: var(--surface);
-    border-color: var(--accent);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow);
-    text-decoration: none;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .hero-section {
-      padding: var(--spacing-3xl) var(--spacing-lg);
-      margin: var(--spacing-lg) 0 var(--spacing-3xl);
-    }
-    
-    .hero-title {
-      font-size: var(--font-size-4xl);
-    }
-    
-    .hero-description {
-      font-size: var(--font-size-lg);
-    }
-    
-    .hero-subtitle {
-      font-size: var(--font-size-base);
-    }
-    
-    .hero-actions {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .btn-primary, .btn-secondary {
-      width: 100%;
-      max-width: 280px;
-      justify-content: center;
-    }
-  }
-`}
-</style>
+🚀 **AI-Powered Backend as a Service**
 
-<div id="quick-start" class="section-container">
+## The Complete AI Backend for Modern Apps
 
-## 🚀 Quick Start with AI
+**Nobox** is the fastest way to integrate AI into your applications. Access **300+ AI models** from providers like
+OpenAI, Anthropic, Google, and Meta through a single, OpenAI-compatible API.
 
-<div class="feature-callout">
-  Get started with AI in just 2 minutes. No complex setup, no API key management across multiple providers.
-</div>
+Unlike traditional AI API services, Nobox combines AI capabilities with a complete backend solution - giving you
+database operations, authentication, file uploads, and AI all in one platform.
 
-<div class="code-section">
-  <h3 class="code-section-title">
-    <span class="section-icon">🔗</span>
-    OpenAI-Compatible API
-  </h3>
-  <p class="code-section-description">
-    Drop-in replacement for OpenAI API calls. Works with official OpenAI client libraries.
-  </p>
-</div>
+**[Get Started](#quick-start)** | **[View 300+ Models](/allowed-models)**
+
+---
+
+## 🚀 Quick Start with AI {#quick-start}
+
+> **Get started with AI in just 2 minutes. No complex setup, no API key management across multiple providers.**
+
+### 🔗 OpenAI-Compatible API
+
+Drop-in replacement for OpenAI API calls. Works with official OpenAI client libraries.
 
 ```javascript
 import OpenAI from 'openai';
 
 const client = new OpenAI({
-  baseURL: 'https://api.nobox.cloud/_f_/v1',
-  apiKey: 'your-nobox-token' // Single token for all models
+baseURL: 'https://api.nobox.cloud/_f_/v1',
+apiKey: 'your-nobox-token' // Single token for all models
 });
 
 const response = await client.chat.completions.create({
-  model: 'gpt-4o', // or claude-3.5-sonnet, gemini-pro, llama-3.3-70b
-  messages: [
-    { role: 'user', content: 'Explain quantum computing' }
-  ]
+model: 'gpt-4o', // or claude-3.5-sonnet, gemini-pro, llama-3.3-70b
+messages: [
+{ role: 'user', content: 'Explain quantum computing' }
+]
 });
 ```
 
-<div class="code-section">
-  <h3 class="code-section-title">
-    <span class="section-icon">🌐</span>
-    Direct HTTP API
-  </h3>
-</div>
+### 🌐 Direct HTTP API
 
 ```javascript
 const response = await fetch('https://api.nobox.cloud/_f_/v1/chat/completions', {
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer your-nobox-token',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    model: 'anthropic/claude-3.5-sonnet',
-    messages: [{ role: 'user', content: 'Hello world' }]
-  })
+method: 'POST',
+headers: {
+'Authorization': 'Bearer your-nobox-token',
+'Content-Type': 'application/json'
+},
+body: JSON.stringify({
+model: 'anthropic/claude-3.5-sonnet',
+messages: [{ role: 'user', content: 'Hello world' }]
+})
 });
 ```
 
-</div>
-
-<div class="features-grid">
+---
 
 ## ⚡ Why Choose Nobox for AI?
 
-<div class="feature-cards">
-  <div class="feature-card">
-    <div class="feature-icon">🔄</div>
-    <h3>Single API, 300+ Models</h3>
-    <ul>
-      <li>Access GPT-4o, Claude 3.5, Gemini Pro, Llama 3.3, and 300+ more models</li>
-      <li>No need to manage multiple API keys or providers</li>
-      <li>Automatic model routing and fallbacks</li>
-    </ul>
-  </div>
+### 🔄 Single API, 300+ Models
+- Access GPT-4o, Claude 3.5, Gemini Pro, Llama 3.3, and 300+ more models
+- No need to manage multiple API keys or providers
+- Automatic model routing and fallbacks
 
-  <div class="feature-card">
-    <div class="feature-icon">📊</div>
-    <h3>Built-in Usage Tracking</h3>
-    <ul>
-      <li>Real-time usage monitoring and cost tracking</li>
-      <li>Wallet-based billing with transparent pricing</li>
-      <li>Set spending limits and usage alerts</li>
-    </ul>
-  </div>
+### 📊 Built-in Usage Tracking
+- Real-time usage monitoring and cost tracking
+- Wallet-based billing with transparent pricing
+- Set spending limits and usage alerts
 
-  <div class="feature-card">
-    <div class="feature-icon">⚡</div>
-    <h3>OpenAI-Compatible</h3>
-    <ul>
-      <li>Drop-in replacement for OpenAI API</li>
-      <li>Works with existing OpenAI client libraries</li>
-      <li>Streaming support for real-time responses</li>
-    </ul>
-  </div>
+### ⚡ OpenAI-Compatible
+- Drop-in replacement for OpenAI API
+- Works with existing OpenAI client libraries
+- Streaming support for real-time responses
 
-  <div class="feature-card">
-    <div class="feature-icon">🛠️</div>
-    <h3>Complete Backend Solution</h3>
-    <ul>
-      <li>Database operations (CRUD, search, population)</li>
-      <li>User authentication and authorization</li>
-      <li>File uploads and storage</li>
-      <li>All integrated with your AI workflows</li>
-    </ul>
-  </div>
-</div>
+### 🛠️ Complete Backend Solution
+- Database operations (CRUD, search, population)
+- User authentication and authorization
+- File uploads and storage
+- All integrated with your AI workflows
 
-</div>
+---
 
 ## 🤖 Available AI Models
 
@@ -295,33 +100,38 @@ const response = await fetch('https://api.nobox.cloud/_f_/v1/chat/completions', 
 | **DeepSeek** | DeepSeek R1, DeepSeek V3 | Math, coding, reasoning |
 | **Mistral** | Mixtral 8x22B, Codestral | Multilingual, coding |
 
-[**View All 300+ Models →**](/allowed-models)
+**[View All 300+ Models →](/allowed-models)**
+
+---
 
 ## 🔧 More Than Just AI
 
 Nobox gives you a complete backend platform:
 
-### **Database Operations**
+### Database Operations
+
 ```typescript
 const posts = await PostModel.find({}, {
-  populate: [{
-    fields: { from: "user", localKey: "authorId", newField: "author" },
-    space: "user"
-  }]
+populate: [{
+fields: { from: "user", localKey: "authorId", newField: "author" },
+space: "user"
+}]
 });
 ```
 
-### **Authentication**
+### Authentication
+
 Built-in user management, JWT tokens, and role-based access control.
 
-### **File Storage**
+### File Storage
+
 Upload and manage files with automatic CDN distribution.
+
+---
 
 ## 🚀 Get Started Now
 
-{% callout type="note" %}
-**AI integration requires no SDK** - use the direct HTTP API or any OpenAI-compatible client library.
-{% /callout %}
+> **Note:** AI integration requires no SDK - use the direct HTTP API or any OpenAI-compatible client library.
 
 1. **[Create Account](https://dashboard.nobox.cloud)** - Get your API token
 2. **[View AI Models](/allowed-models)** - Browse 300+ available models
@@ -329,138 +139,11 @@ Upload and manage files with automatic CDN distribution.
 4. **[Install SDK](/install-nobox)** - Add database operations (optional)
 
 ### Popular Starting Points:
+
 - **[AI Models API](/ai/access-model)** - Direct API documentation
 - **[All Available Models](/allowed-models)** - Complete model catalog
 - **[Database SDK](/install-nobox)** - Add backend operations
 - **[Authentication](/functions/login)** - User management
-
-<style jsx>
-{`
-  .section-container {
-    margin: var(--spacing-2xl) 0;
-  }
-  
-  .feature-callout {
-    background: var(--accent-light);
-    color: var(--accent);
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--border-radius);
-    border-left: 4px solid var(--accent);
-    margin: var(--spacing-md) 0 var(--spacing-lg);
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-medium);
-  }
-  
-  .code-section {
-    margin: var(--spacing-lg) 0 var(--spacing-md);
-  }
-  
-  .code-section-title {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-sm);
-  }
-  
-  .section-icon {
-    font-size: var(--font-size-lg);
-  }
-  
-  .code-section-description {
-    color: var(--text-secondary);
-    font-size: var(--font-size-base);
-    margin-bottom: var(--spacing-lg);
-  }
-  
-  .features-grid {
-    margin: var(--spacing-xl) 0;
-  }
-  
-  .feature-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
-    margin: var(--spacing-lg) 0;
-  }
-  
-  .feature-card {
-    background: var(--background);
-    border: 1px solid var(--border);
-    border-radius: var(--border-radius-lg);
-    padding: var(--spacing-xl);
-    box-shadow: var(--shadow-sm);
-    transition: all 200ms ease;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-400), var(--accent));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 300ms ease;
-  }
-  
-  .feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--theme);
-  }
-  
-  .feature-card:hover::before {
-    transform: scaleX(1);
-  }
-  
-  .feature-icon {
-    font-size: var(--font-size-3xl);
-    margin-bottom: var(--spacing-md);
-    display: block;
-  }
-  
-  .feature-card h3 {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-md);
-    margin-top: 0;
-  }
-  
-  .feature-card ul {
-    margin: 0;
-    padding-left: var(--spacing-lg);
-  }
-  
-  .feature-card li {
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-sm);
-    line-height: var(--line-height-relaxed);
-  }
-  
-  .feature-card li:last-child {
-    margin-bottom: 0;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .feature-cards {
-      grid-template-columns: 1fr;
-      gap: var(--spacing-lg);
-    }
-    
-    .feature-card {
-      padding: var(--spacing-lg);
-    }
-  }
-`}
-</style>
 
 ### What is Nobox?
 URL: https://docs.nobox.cloud/what-is-nobox
@@ -3847,8 +3530,6 @@ DESCRIPTION: Access 300+ AI models through our OpenAI-compatible API endpoint. D
 
 Nobox provides access to **300+ AI models** from providers like OpenAI, Anthropic, Google, and Meta through a single, **OpenAI-compatible API endpoint**. 
 
-Use our API as a **drop-in replacement** for OpenAI API calls - it works with official OpenAI client libraries and existing code.
-c
 ### Chat Completions Endpoint
 
 - Method: POST
@@ -3913,7 +3594,7 @@ import OpenAI from 'openai';
 
 const client = new OpenAI({
   baseURL: 'https://api.nobox.cloud/_f_/v1',
-  apiKey: 'your-nobox-user-token'
+  apiKey: 'your-nobox-user-token' // Get this token from the Nobox Dashboard (`dashboard.nobox.cloud`)
 });
 
 const response = await client.chat.completions.create({
@@ -3936,7 +3617,7 @@ from openai import OpenAI
 
 client = OpenAI(
     base_url="https://api.nobox.cloud/_f_/v1",
-    api_key="your-nobox-user-token"
+    api_key="your-nobox-user-token"  # Get this token from the Nobox Dashboard (`dashboard.nobox.cloud`)
 )
 
 response = client.chat.completions.create(
@@ -3958,7 +3639,7 @@ print(response.choices[0].message.content)
 const response = await fetch('https://api.nobox.cloud/_f_/v1/chat/completions', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer your-nobox-user-token',
+    'Authorization': 'Bearer your-nobox-user-token', // Get this token from the Nobox Dashboard (`dashboard.nobox.cloud`)
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
@@ -3981,7 +3662,7 @@ console.log(data.choices[0].message.content);
 const response = await fetch('https://api.nobox.cloud/_f_/v1/chat/completions', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer your-nobox-user-token',
+    'Authorization': 'Bearer your-nobox-user-token', // Get this token from the Nobox Dashboard (`dashboard.nobox.cloud`)
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
@@ -4039,7 +3720,7 @@ Get the complete list of models available to your account:
 const response = await fetch('https://api.nobox.cloud/_f_/models', {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer your-nobox-user-token',
+    'Authorization': 'Bearer your-nobox-user-token', // Get this token from the Nobox Dashboard (`dashboard.nobox.cloud`)
     'Content-Type': 'application/json'
   }
 });

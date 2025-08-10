@@ -7,7 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const CORE_MODELS_DIR = path.resolve(__dirname, '../../nobox-core/src/utils/models');
+const CORE_MODELS_DIR = path.resolve(__dirname, '../../nobox-core/src/utils/ai-models');
 const DOCS_PAGES_DIR = path.resolve(__dirname, '../pages');
 const OUTPUT_PAGE = path.join(DOCS_PAGES_DIR, 'allowed-models.md');
 const POPULAR_PROVIDERS = [
