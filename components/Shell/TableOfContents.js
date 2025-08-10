@@ -1,4 +1,31 @@
 import React from 'react';
+
+function useScrollSpy(ids, offset = 120) {
+  const [activeId, setActiveId] = React.useState(null);
+  React.useEffect(() => {
+    if (!ids.length || typeof window === 'undefined') return;
+    const elements = ids
+      .map((id) => document.getElementById(id.replace(/^#/, '')))
+      .filter(Boolean);
+
+    function onScroll() {
+      let current = null;
+      for (const el of elements) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top - offset <= 0) {
+          current = el.id;
+        } else {
+          break;
+        }
+      }
+      setActiveId(current);
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [ids.join(','), offset]);
+  return activeId ? `#${activeId}` : null;
+}
 import Link from 'next/link';
 
 export function TableOfContents({ toc }) {
@@ -8,14 +35,15 @@ export function TableOfContents({ toc }) {
       (item.level === 2 || item.level === 3) &&
       item.title !== 'Next steps'
   );
+  const hrefs = items.map((i) => `#${i.id}`);
+  const activeHref = useScrollSpy(hrefs);
   return (
     <nav className="toc">
       {items.length > 1 ? (
         <ul className="flex column">
           {items.map((item) => {
             const href = `#${item.id}`;
-            const active =
-              typeof window !== 'undefined' && window.location.hash === href;
+            const active = activeHref === href;
             return (
               <li
                 key={item.title}
@@ -39,7 +67,8 @@ export function TableOfContents({ toc }) {
           nav {
             position: sticky;
             top: calc(2.5rem + var(--nav-height));
-            max-height: calc(100vh - var(--nav-height));
+            max-height: calc(100vh - var(--nav-height) - 2.5rem);
+            overflow-y: auto;
             flex: 0 0 240px;
             /* https://stackoverflow.com/questions/44446671/my-position-sticky-element-isnt-sticky-when-using-flexbox */
             align-self: flex-start;
@@ -66,6 +95,19 @@ export function TableOfContents({ toc }) {
           }
           li.padded {
             padding-left: 1rem;
+          }
+          /* show a left bar for active heading */
+          li.active {
+            position: relative;
+          }
+          li.active::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 4px;
+            bottom: 4px;
+            width: 2px;
+            background: var(--theme);
           }
           @media screen and (max-width: 1000px) {
             nav {

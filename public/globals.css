@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
 
 *,
 *::before,
@@ -12,97 +13,201 @@
 
 :root {
   --default-vertical-spacing: 0.75rem;
-  --nav-height: 71.594px;
-  --footer-height: 61px;
-  --landing-page-max-width: 1200px;
+  --nav-height: 60px;
+  --footer-height: 60px;
+  --landing-page-max-width: 1400px;
+  --content-max-width: 1200px;
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --border-radius-lg: 16px;
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
-  --sans: -apple-system, BlinkMacSystemFont, Inter, Segoe UI, Helvetica Neue,
-    sans-serif;
-  --serif: Tiempos, serif;
-  --mono: GT America Mono, Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono',
-    monospace;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, sans-serif;
+  --serif: 'Georgia', 'Times New Roman', serif;
+  --mono: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', monospace;
 
-  --font-size-0: 8px;
-  --font-size-1: 12px;
-  --font-size-2: 13px;
-  --font-size-3: 16px;
-  --font-size-4: 18px;
-  --font-size-5: 24px;
-  --font-size-6: 32px;
-  --font-size-7: 38px;
-  --font-size-jumbo: 79px;
+  /* Enhanced typography scale */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 36px;
+  --font-size-5xl: 48px;
+  --font-size-6xl: 60px;
+  --font-size-7xl: 72px;
 
-  --line-height-1: 16px;
-  --line-height-2: 20px;
-  --line-height-3: 25px;
-  --line-height-4: 28px;
-  --line-height-5: 32px;
-  --line-height-6: 40px;
-  --line-height-7: 48px;
-  --line-height-jumbo: 90px;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 0.75rem;
+  --spacing-lg: 1rem;
+  --spacing-xl: 1.5rem;
+  --spacing-2xl: 2rem;
+  --spacing-3xl: 2.5rem;
+  --spacing-4xl: 3rem;
 }
 
 :root,
 .light {
+  /* Base colors */
   --white: #ffffff;
-  --black: #18181b;
-  --black-light: #58585f;
-  --black-medium: #2c2c30;
-  --gray-light: #f6f9fc;
-  --gray-medium: #dce6e9;
+  --black: #0a0a0a;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
 
-  --yellow: #ffd848;
-  --purple: #6e00f5;
-  --green: #0a993e;
-  --blue: #0073e6;
-  --magenta: #dc34dc;
+  /* Brand colors */
+  --primary-50: #fefce8;
+  --primary-100: #fef9c3;
+  --primary-200: #fef08a;
+  --primary-300: #fde047;
+  --primary-400: #facc15;
+  --primary-500: #eab308;
+  --primary-600: #ca8a04;
+  --primary-700: #a16207;
+  --primary-800: #854d0e;
+  --primary-900: #713f12;
 
-  --theme: var(--yellow);
-  --stripe: #0a2540;
+  /* Accent colors */
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
 
-  --light: var(--white);
-  --dark: var(--black);
-  --text: var(--dark);
+  --green-50: #f0fdf4;
+  --green-100: #dcfce7;
+  --green-500: #22c55e;
+  --green-600: #16a34a;
 
-  --contrast-dark: var(--dark);
-  --code-background: var(--gray-light);
-  --code-border: var(--gray-medium);
-  --toc-border: rgba(0, 0, 0, 0.14);
-  --translucent: rgba(0, 0, 0, 0.4);
+  --red-50: #fef2f2;
+  --red-100: #fee2e2;
+  --red-500: #ef4444;
+  --red-600: #dc2626;
 
-  --docsearch-primary-color: var(--black-medium) !important;
-  --docsearch-logo-color: var(--black-medium) !important;
+  --purple-50: #faf5ff;
+  --purple-100: #f3e8ff;
+  --purple-500: #a855f7;
+  --purple-600: #9333ea;
+
+  /* Semantic colors */
+  --background: var(--white);
+  --surface: var(--gray-50);
+  --surface-hover: var(--gray-100);
+  --border: var(--gray-200);
+  --border-strong: var(--gray-300);
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-600);
+  --text-tertiary: var(--gray-500);
+  --text-inverse: var(--white);
+
+  /* Theme assignments */
+  --theme: var(--primary-400);
+  --theme-dark: var(--primary-600);
+  --accent: var(--blue-600);
+  --accent-light: var(--blue-100);
+  --success: var(--green-600);
+  --success-light: var(--green-100);
+  --warning: var(--primary-500);
+  --warning-light: var(--primary-100);
+  --error: var(--red-600);
+  --error-light: var(--red-100);
+
+  --light: var(--background);
+  --dark: var(--text-primary);
+  --text: var(--text-primary);
+
+  --contrast-dark: var(--text-primary);
+  --code-background: var(--gray-100);
+  --code-border: var(--border);
+  --toc-border: var(--border);
+  --translucent: rgba(17, 24, 39, 0.4);
+
+  --docsearch-primary-color: var(--text-primary) !important;
+  --docsearch-logo-color: var(--text-primary) !important;
 }
 
 .dark {
-  --stripe: var(--white);
+  /* Dark mode semantic colors */
+  --background: var(--gray-900);
+  --surface: var(--gray-800);
+  --surface-hover: var(--gray-700);
+  --border: var(--gray-700);
+  --border-strong: var(--gray-600);
+  --text-primary: var(--gray-50);
+  --text-secondary: var(--gray-300);
+  --text-tertiary: var(--gray-400);
+  --text-inverse: var(--gray-900);
 
-  --light: var(--black);
-  --dark: var(--white);
-  --text: var(--dark);
+  --light: var(--background);
+  --dark: var(--text-primary);
+  --text: var(--text-primary);
 
-  --contrast-dark: var(--black-medium);
-  --code-background: var(--black-medium);
-  --code-border: var(--black-light);
-  --toc-border: var(--black-light);
+  --contrast-dark: var(--gray-700);
+  --code-background: var(--gray-800);
+  --code-border: var(--border);
+  --toc-border: var(--border);
   --translucent: rgba(255, 255, 255, 0.4);
+
+  /* Adjust theme colors for dark mode */
+  --theme: var(--primary-300);
+  --theme-dark: var(--primary-400);
+  --accent: var(--blue-400);
+  --accent-light: var(--blue-900);
+  --success: var(--green-400);
+  --success-light: var(--green-900);
+  --warning: var(--primary-300);
+  --warning-light: var(--primary-900);
+  --error: var(--red-400);
+  --error-light: var(--red-900);
 }
 
 .dark,
 /* Landing page uses a custom pre w/ a black background and --dark mode colors */
 .page--landing pre[class*='language-'],
 .sandbox .CodeMirror {
-  --light: var(--black);
-  --dark: var(--white);
-  --text: var(--dark);
+  --light: var(--background);
+  --dark: var(--text-primary);
+  --text: var(--text-primary);
 
-  --purple: var(--yellow);
-  /* Change purple to yellow in dark mode */
-  --green: #00d924;
-  --blue: #80e9ff;
-  --magenta: #ff80ff;
+  /* Syntax highlighting colors for dark mode */
+  --code-keyword: var(--blue-400);
+  --code-string: var(--green-400);
+  --code-number: var(--purple-400);
+  --code-comment: var(--gray-500);
+  --code-function: var(--blue-300);
+  --code-variable: var(--green-300);
 }
 
+
+:root {
+  scroll-behavior: smooth;
+}
 
 html,
 body,
@@ -119,14 +224,91 @@ body,
 }
 
 body {
-  color: var(--text);
-  background: var(--light);
+  color: var(--text-primary);
+  background: var(--background);
   font-family: var(--sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  font-weight: var(--font-weight-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
+/* Enhanced heading styles */
+:is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--sans);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+  margin-top: var(--spacing-md);
+}
+
+h1 {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-extrabold);
+  margin-top: 0;
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+  margin-top: var(--spacing-lg);
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+  margin-top: var(--spacing-md);
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+h5 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+h6 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Ensure anchored headings are not hidden behind fixed nav */
+:is(h1, h2, h3, h4, h5, h6)[id] {
+  scroll-margin-top: calc(var(--nav-height) + var(--spacing-lg));
+}
+
+/* Paragraphs and text blocks */
+p {
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Lists */
+ul,
+ol {
+  margin-bottom: var(--spacing-sm);
+  padding-left: var(--spacing-xl);
+}
+
+li {
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Selection styles */
 body ::selection,
 body.dark ::selection {
-  color: var(--black) !important;
+  color: var(--text-inverse) !important;
   background: var(--theme) !important;
 }
 
@@ -135,15 +317,24 @@ body.modal-is-active {
   overflow: hidden;
 }
 
+/* Enhanced link styles */
 a {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 1px;
-  transition: opacity 300ms ease;
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 200ms ease;
 }
 
 a:hover {
-  opacity: 0.75;
+  color: var(--blue-700);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 2px;
+}
+
+a:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
 }
 
 .primary a,
@@ -208,7 +399,8 @@ blockquote {
 p {
   text-rendering: optimizeLegibility;
   font-size: var(--font-size-3);
-  line-height: var(--line-height-3);
+  line-height: 1.7;
+  letter-spacing: 0.2px;
 }
 
 p:last-child {
@@ -225,14 +417,16 @@ h2,
 .h2 {
   font-size: var(--font-size-5);
   line-height: var(--line-height-5);
-  margin-top: 2.5rem;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
 }
 
 h3,
 .h3 {
   font-size: var(--font-size-4);
   line-height: var(--line-height-4);
-  margin-top: 2rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
 }
 
 h4,
@@ -317,6 +511,7 @@ table {
   margin-top: 2rem;
   margin-bottom: 2rem;
   overflow: hidden;
+  table-layout: fixed;
 }
 
 th,
@@ -363,12 +558,42 @@ tr:last-child td:last-child {
   border-bottom-right-radius: 3px;
 }
 
+/* Prevent wide tables or long code from overflowing into the right sidebar */
+main article {
+  overflow-x: auto;
+}
+
+article table th,
+article table td {
+  word-break: break-word;
+}
+
+/* Allow wrapping of inline code inside tables */
+article table code {
+  white-space: normal;
+  word-break: break-word;
+}
+
 article {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
   max-width: 100%;
   min-width: 0;
+  /* Improve readability width */
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Comfortable reading width for docs content */
+main article> :global(*) {
+  max-width: 70ch;
+}
+
+@media (max-width: 1000px) {
+  main article> :global(*) {
+    max-width: 100%;
+  }
 }
 
 /* Helper classes */
@@ -396,50 +621,91 @@ article {
   display: none;
 }
 
-/* Syntax highlighting */
+/* Enhanced code blocks and syntax highlighting */
 pre[class*='language-'] {
   /* Override Prism styles */
   text-shadow: none !important;
-  color: var(--text) !important;
+  color: var(--text-primary) !important;
   background: var(--code-background) !important;
-  font-size: 14px !important;
-  line-height: 22px !important;
+  font-size: var(--font-size-sm) !important;
+  line-height: var(--line-height-relaxed) !important;
   font-family: var(--mono) !important;
-  margin: 0 0 var(--default-vertical-spacing) !important;
+  font-weight: var(--font-weight-normal) !important;
+  margin: var(--spacing-lg) 0 !important;
+  padding: var(--spacing-lg) !important;
+  border-radius: var(--border-radius) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-sm) !important;
+  overflow-x: auto !important;
+  position: relative !important;
+}
+
+/* Inline code */
+code:not([class*='language-']) {
+  background: var(--code-background);
+  color: var(--text-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-family: var(--mono);
+  font-size: calc(var(--font-size-sm) * 0.9);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid var(--border);
 }
 
 pre[class*='language-'] .md-link {
   color: inherit !important;
 }
 
+/* Enhanced token styling */
 .token {
-  color: var(--text) !important;
+  color: var(--text-primary) !important;
   background: transparent !important;
 }
 
-.token.comment {
-  color: var(--translucent) !important;
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--text-tertiary) !important;
+  font-style: italic !important;
 }
 
-pre .token.string,
-pre .token.boolean,
-pre .token.number {
-  color: var(--magenta) !important;
+.token.string,
+.token.attr-value,
+.token.boolean,
+.token.number {
+  color: var(--success) !important;
 }
 
-pre .token.function,
-pre .token.tagType,
-pre .token.tag {
-  color: var(--blue) !important;
+.token.function,
+.token.class-name,
+.token.tag {
+  color: var(--accent) !important;
+  font-weight: var(--font-weight-medium) !important;
 }
 
-pre .token.keyword,
-.cm-attribute {
-  color: var(--purple) !important;
+.token.keyword,
+.token.operator,
+.token.important,
+.token.bold {
+  color: var(--purple-600) !important;
+  font-weight: var(--font-weight-semibold) !important;
 }
 
-pre .token.variable {
-  color: var(--green) !important;
+.token.variable,
+.token.property,
+.token.attr-name {
+  color: var(--blue-700) !important;
+}
+
+.token.punctuation,
+.token.selector {
+  color: var(--text-secondary) !important;
+}
+
+.token.regex,
+.token.url {
+  color: var(--warning) !important;
 }
 
 .sandbox span.cm-comment {
@@ -506,6 +772,198 @@ main .CodeMirror-cursor {
   border-color: var(--theme);
 }
 
+/* Enhanced content styling */
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--spacing-lg) 0;
+  background: var(--background);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+table th,
+table td {
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+table th {
+  background: var(--surface);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+table td {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+table tr:hover {
+  background: var(--surface-hover);
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Blockquotes */
+blockquote {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-left: 4px solid var(--theme);
+  background: var(--surface);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  position: relative;
+}
+
+blockquote p {
+  margin: 0;
+  color: var(--text-primary);
+  font-style: italic;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Horizontal rules */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: var(--spacing-3xl) 0;
+}
+
+/* Enhanced form elements */
+input,
+textarea,
+select {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--text-primary);
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  transition: all 200ms ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--theme);
+  box-shadow: 0 0 0 3px var(--theme)40;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.font-mono {
+  font-family: var(--mono);
+}
+
+.font-sans {
+  font-family: var(--sans);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+}
+
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-base {
+  font-size: var(--font-size-base);
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+}
+
+.text-xl {
+  font-size: var(--font-size-xl);
+}
+
+.font-light {
+  font-weight: var(--font-weight-light);
+}
+
+.font-normal {
+  font-weight: var(--font-weight-normal);
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.font-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.font-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+
+.bg-surface {
+  background: var(--surface);
+}
+
+.bg-background {
+  background: var(--background);
+}
+
+.border {
+  border: 1px solid var(--border);
+}
+
+.border-radius {
+  border-radius: var(--border-radius);
+}
+
+.shadow {
+  box-shadow: var(--shadow);
+}
+
 /* https://discourse.webflow.com/t/hide-overflow-scroll-bar/195259/5?utm_source=google&utm_medium=search&utm_campaign=general-paid-workhorse&utm_term=keyword-targeting&utm_content=dynamic-search-ads-t1&gclid=CjwKCAjwu_mSBhAYEiwA5BBmf7fOfY_lM89BGr3aT67riZ1XrK7uHxBpH5vDwiyJg9rVeu5EwXQiCRoC7VYQAvD_BwE */
 main .CodeMirror-scroll {
   overflow-x: hidden;
@@ -529,7 +987,6 @@ main .CodeMirror-scroll::-webkit-scrollbar {
 }
 
 @media screen and (max-width: 1291px)
-
 /* 1200px / 0.9 */
   {
   :root {

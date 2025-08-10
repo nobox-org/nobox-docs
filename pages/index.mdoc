@@ -1,0 +1,145 @@
+---
+title: "Nobox - AI-Powered Backend as a Service"
+description: "The fastest way to integrate AI into your applications. Access 300+ AI models through a single API with
+built-in usage tracking and wallet billing."
+---
+
+# Nobox - AI-Powered Backend as a Service
+
+🚀 **AI-Powered Backend as a Service**
+
+## The Complete AI Backend for Modern Apps
+
+**Nobox** is the fastest way to integrate AI into your applications. Access **300+ AI models** from providers like
+OpenAI, Anthropic, Google, and Meta through a single, OpenAI-compatible API.
+
+Unlike traditional AI API services, Nobox combines AI capabilities with a complete backend solution - giving you
+database operations, authentication, file uploads, and AI all in one platform.
+
+**[Get Started](#quick-start)** | **[View 300+ Models](/allowed-models)**
+
+---
+
+## 🚀 Quick Start with AI {#quick-start}
+
+> **Get started with AI in just 2 minutes. No complex setup, no API key management across multiple providers.**
+
+### 🔗 OpenAI-Compatible API
+
+Drop-in replacement for OpenAI API calls. Works with official OpenAI client libraries.
+
+```javascript
+import OpenAI from 'openai';
+
+const client = new OpenAI({
+baseURL: 'https://api.nobox.cloud/_f_/v1',
+apiKey: 'your-nobox-token' // Single token for all models
+});
+
+const response = await client.chat.completions.create({
+model: 'gpt-4o', // or claude-3.5-sonnet, gemini-pro, llama-3.3-70b
+messages: [
+{ role: 'user', content: 'Explain quantum computing' }
+]
+});
+```
+
+### 🌐 Direct HTTP API
+
+```javascript
+const response = await fetch('https://api.nobox.cloud/_f_/v1/chat/completions', {
+method: 'POST',
+headers: {
+'Authorization': 'Bearer your-nobox-token',
+'Content-Type': 'application/json'
+},
+body: JSON.stringify({
+model: 'anthropic/claude-3.5-sonnet',
+messages: [{ role: 'user', content: 'Hello world' }]
+})
+});
+```
+
+---
+
+## ⚡ Why Choose Nobox for AI?
+
+### 🔄 Single API, 300+ Models
+- Access GPT-4o, Claude 3.5, Gemini Pro, Llama 3.3, and 300+ more models
+- No need to manage multiple API keys or providers
+- Automatic model routing and fallbacks
+
+### 📊 Built-in Usage Tracking
+- Real-time usage monitoring and cost tracking
+- Wallet-based billing with transparent pricing
+- Set spending limits and usage alerts
+
+### ⚡ OpenAI-Compatible
+- Drop-in replacement for OpenAI API
+- Works with existing OpenAI client libraries
+- Streaming support for real-time responses
+
+### 🛠️ Complete Backend Solution
+- Database operations (CRUD, search, population)
+- User authentication and authorization
+- File uploads and storage
+- All integrated with your AI workflows
+
+---
+
+## 🤖 Available AI Models
+
+| Provider | Popular Models | Specialization |
+|----------|----------------|----------------|
+| **OpenAI** | GPT-4o, GPT-4.1, o1, o3 | General AI, coding, reasoning |
+| **Anthropic** | Claude 3.5 Sonnet, Claude 4 | Long context, analysis |
+| **Google** | Gemini Pro, Gemini Flash | Multimodal, fast responses |
+| **Meta** | Llama 3.3 70B, Llama 4 | Open source, efficient |
+| **DeepSeek** | DeepSeek R1, DeepSeek V3 | Math, coding, reasoning |
+| **Mistral** | Mixtral 8x22B, Codestral | Multilingual, coding |
+
+**[View All 300+ Models →](/allowed-models)**
+
+---
+
+## 🔧 More Than Just AI
+
+Nobox gives you a complete backend platform:
+
+### Database Operations
+
+```typescript
+// NoSQL-style database with SQL-like population
+const posts = await PostModel.find({}, {
+populate: [{
+fields: { from: "user", localKey: "authorId", newField: "author" },
+space: "user"
+}]
+});
+```
+
+### Authentication
+
+Built-in user management, JWT tokens, and role-based access control.
+
+### File Storage
+
+Upload and manage files with automatic CDN distribution.
+
+---
+
+## 🚀 Get Started Now
+
+> **Note:** AI integration requires no SDK - use the direct HTTP API or any OpenAI-compatible client library.
+
+1. **[Create Account](https://dashboard.nobox.cloud)** - Get your API token
+2. **[View AI Models](/allowed-models)** - Browse 300+ available models
+3. **[API Documentation](/ai/access-model)** - Start making AI calls
+4. **[Install SDK](/install-nobox)** - Add database operations (optional)
+
+### Popular Starting Points:
+
+- **[AI Models API](/ai/access-model)** - Direct API documentation
+- **[All Available Models](/allowed-models)** - Complete model catalog
+- **[Database SDK](/install-nobox)** - Add backend operations
+- **[Authentication](/functions/login)** - User management

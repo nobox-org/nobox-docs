@@ -3,12 +3,13 @@ const withMarkdoc = require('@markdoc/next.js');
 module.exports = withMarkdoc()({
   reactStrictMode: true,
   pageExtensions: ['js', 'md', 'mdoc'],
-  rewrites() {
+  async rewrites() {
     return [
-      {
-        source: '/spec',
-        destination: '/spec.html'
-      }
+      { source: '/spec', destination: '/spec.html' },
+      // AI section pretty URLs
+      { source: '/ai/allowed-models', destination: '/allowed-models' },
+      // Legacy redirect - functions/access-model now at ai/access-model
+      { source: '/functions/access-model', destination: '/ai/access-model' },
     ];
   },
   // Ensure llms.txt files are served at root

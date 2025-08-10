@@ -3,6 +3,10 @@
 ## Introduction
 This documentation provides guidance on building an SDK (Software Development Kit) for the Nobox Core API. The API uses the OpenAPI 3.0.0 specification and provides various endpoints to interact with the Nobox platform.
 
+{% callout type="note" %}
+AI integration does not require an SDK. To call AI models, use the direct HTTP endpoint documented here: [AI Models (Direct API)](/ai/access-model).
+{% /callout %}
+
 ## SDK Components
 These SDK you will be developing would possibly have the following:
 

@@ -209,7 +209,7 @@ export default function MyApp(props) {
         <ThemeToggle />
       </TopNav>
       <div className="page">
-        <SideNav />
+        <SideNav title={title} />
         <main className="flex column">
           <div id="skip-nav" />
           <Component {...pageProps} />
@@ -217,9 +217,7 @@ export default function MyApp(props) {
         <TableOfContents toc={toc} />
       </div>
       <div className="footer-bar">
-        <Footer landing={isLandingPage}>
-          <Link href="https://github.com/nobox-org/nobox-js-client">GitHub</Link>
-        </Footer>
+        <Footer />
       </div>
       <style jsx global>
         {`
@@ -252,10 +250,7 @@ export default function MyApp(props) {
             padding-top: var(--nav-height);
             min-height: 100vh;
             max-width: 100vw;
-          }
-
-          .dark .page {
-            border-bottom-color: var(--black-light);
+            background: var(--background);
           }
 
           .skip-nav {
@@ -285,25 +280,41 @@ export default function MyApp(props) {
           main {
             flex-grow: 1;
             max-width: 100%;
-            /* https://stackoverflow.com/questions/36230944/prevent-flex-items-from-overflowing-a-container */
             min-width: 0;
+            background: var(--background);
+            margin-left: 260px;
           }
 
           main article {
-            padding: 2rem 1.5rem 3rem;
+            max-width: 900px;
+            padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl);
+            margin: 0 auto;
+            line-height: var(--line-height-relaxed);
           }
+          
+          @media screen and (max-width: 768px) {
+            main {
+              margin-left: 0;
+            }
+            main article {
+              padding: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
+            }
+          }
+          
 
           .footer-bar {
             flex: 1;
-            padding: ${isLandingPage ? '1rem 0' : '0'};
-            border-top: 1px solid var(--gray-medium);
+            padding: ${isLandingPage ? 'var(--spacing-lg) 0' : '0'};
+            border-top: 1px solid var(--border);
+            background: var(--surface);
           }
 
           .footer-bar footer {
             margin: 0 auto;
             max-width: ${isLandingPage
-            ? 'var(--landing-page-max-width)'
-            : 'calc(100% - 4rem)'};
+            ? 'var(--content-max-width)'
+            : 'var(--content-max-width)'};
+            padding: 0 var(--spacing-xl);
           }
 
           .page--landing .footer-bar {
@@ -558,3 +569,6 @@ export default function MyApp(props) {
     </div>
   );
 }
+
+// DocPager removed per request
+

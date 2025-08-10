@@ -55,11 +55,14 @@ export function Code({ children, 'data-language': language }) {
 
   const lang = language === 'md' ? 'markdoc' : language || 'markdoc';
 
-  const lines =
-    typeof children === 'string' ? children.split('\n').filter(Boolean) : [];
-
   return (
     <div className="code" aria-live="polite">
+      <div className="code__header">
+        <span className="code__lang">{lang}</span>
+        <button onClick={() => setCopied(true)}>
+          <Icon icon={copied ? 'copied' : 'copy'} />
+        </button>
+      </div>
       <pre
         // Prevents "Failed to execute 'removeChild' on 'Node'" error
         // https://stackoverflow.com/questions/54880669/react-domexception-failed-to-execute-removechild-on-node-the-node-to-be-re
@@ -69,24 +72,39 @@ export function Code({ children, 'data-language': language }) {
       >
         {children}
       </pre>
-      <button onClick={() => setCopied(true)}>
-        <Icon icon={copied ? 'copied' : 'copy'} />
-      </button>
       <style jsx>
         {`
           .code {
             position: relative;
           }
-          .code button {
+          .code__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 10px;
+            border: 1px solid var(--code-border);
+            border-bottom: none;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            background: var(--code-background);
+          }
+          .code__lang {
+            font-family: var(--mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            opacity: 0.7;
+          }
+          .code__header button {
             appearance: none;
-            position: absolute;
             color: inherit;
             background: var(--code-background);
-            top: ${lines.length === 1 ? '17px' : '13px'};
-            right: 11px;
             border-radius: 4px;
             border: none;
             font-size: 15px;
+          }
+          pre[class*='language-'] {
+            border-top-left-radius: 0 !important;
+            border-top-right-radius: 0 !important;
           }
         `}
       </style>

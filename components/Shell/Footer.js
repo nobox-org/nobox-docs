@@ -4,18 +4,18 @@ import { AppLink as Link } from '../AppLink';
 import { ThemeToggle } from '.';
 
 export function Footer() {
+  const year = new Date().getFullYear();
   const copyright = (
     <>
       <Link href="https://nobox.cloud" className="copyright">
-        <span>&copy; 2023 <span className='logo-text'>Nobox</span></span>
+        <span>&copy; {year} <span className='logo-text'>Nobox</span></span>
       </Link>
       <style jsx>
         {`
         .copyright {
           text-decoration: none;
           font-weight: 500;
-          color: blue;
-          background: brown;
+          color: inherit;
         }
         `}
       </style>
@@ -53,6 +53,7 @@ export function Footer() {
             width: 100%;
             color: var(--dark);
             padding: 1rem 0;
+            border-top: 1px solid var(--code-border);
           }
 
           footer.desktop {

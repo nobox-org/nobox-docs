@@ -1,6 +1,6 @@
 # Nobox Documentation for LLMs
 # This file helps AI models discover and understand Nobox documentation
-# Last updated: 2025-08-07
+# Last updated: 2025-08-10
 
 ## Getting Started
 https://docs.nobox.cloud/
@@ -10,6 +10,9 @@ https://docs.nobox.cloud/integrate-nobox
 
 ## API Reference
 https://docs.nobox.cloud/api-reference
+
+## Models
+https://docs.nobox.cloud/allowed-models
 
 ## Methods
 https://docs.nobox.cloud/methods/overview
@@ -42,6 +45,7 @@ https://docs.nobox.cloud/sdk/how-to-create-header-structure
 
 ## Functions
 https://docs.nobox.cloud/functions/login
+https://docs.nobox.cloud/ai/access-model
 
 ## Examples
 https://docs.nobox.cloud/nobox-examples

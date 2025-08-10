@@ -24,6 +24,9 @@ const DOC_SECTIONS = {
     'API Reference': [
         '/api-reference'
     ],
+    'Models': [
+        '/allowed-models'
+    ],
     'Methods': [
         '/methods/overview',
         '/methods/types',
@@ -54,7 +57,8 @@ const DOC_SECTIONS = {
         '/sdk/how-to-create-header-structure'
     ],
     'Functions': [
-        '/functions/login'
+        '/functions/login',
+        '/ai/access-model'
     ],
     'Examples': [
         '/nobox-examples'
