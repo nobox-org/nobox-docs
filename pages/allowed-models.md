@@ -7,6 +7,8 @@ description: Full list of all allowed AI models available in Nobox with provider
 
 Updated: 2025-08-10
 
+{% copy-llms /%}
+
 Total models: 312
 
 Tip: Use the search to filter models by name, id, modality or provider.

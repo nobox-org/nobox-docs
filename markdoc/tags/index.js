@@ -29,3 +29,4 @@ module.exports['side-by-side'] = sideBySide;
 export { default as typewriter } from './typewriter.markdoc';
 export { default as youtube } from './youtube.markdoc';
 export { default as 'ai-models-tools' } from './ai-models-tools.markdoc';
+export { default as 'copy-llms' } from './copy-llms.markdoc';
